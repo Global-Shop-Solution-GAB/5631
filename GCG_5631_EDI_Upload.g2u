@@ -1,0 +1,1874 @@
+Program.Sub.ScreenSU.Start
+Gui.Form..Create
+Gui.Form..Caption("Parse Commit and Forecast EDI files")
+Gui.Form..Size(28140,13950)
+Gui.Form..MinX(0)
+Gui.Form..MinY(0)
+Gui.Form..Position(0,0)
+Gui.Form..BackColor(-2147483633)
+Gui.Form..MousePointer(0)
+Gui.Form..Event(UnLoad,Form_UnLoad)
+Gui.Form.cmdProcess.Create(Button)
+Gui.Form.cmdProcess.Size(840,375)
+Gui.Form.cmdProcess.Position(23325,660)
+Gui.Form.cmdProcess.Caption("Process")
+Gui.Form.cmdProcess.Event(Click,cmdProcess_Click)
+Gui.Form.cmdProcess.FontSize(7)
+Gui.Form.proBar6.Create(ProgressBar)
+Gui.Form.proBar6.Size(15300,105)
+Gui.Form.proBar6.Position(12585,8010)
+Gui.Form.proBar6.Visible(False)
+Gui.Form.lbl2.Create(Label,"Forecast",True,780,255,0,11010,825,True,0,"Arial",8,-2147483633,0)
+Gui.Form.cmdBrowseForecastFile.Create(Button)
+Gui.Form.cmdBrowseForecastFile.Size(540,480)
+Gui.Form.cmdBrowseForecastFile.Position(20925,630)
+Gui.Form.cmdBrowseForecastFile.Caption("^")
+Gui.Form.cmdBrowseForecastFile.Event(Click,cmdBrowseForecastFile_Click)
+Gui.Form.proBar2.Create(ProgressBar)
+Gui.Form.proBar2.Visible(False)
+Gui.Form.proBar2.Size(8955,105)
+Gui.Form.proBar2.Position(11850,480)
+Gui.Form.gsCommit.Create(GsGridControl)
+Gui.Form.gsCommit.Size(10770,6765)
+Gui.Form.gsCommit.Position(135,1215)
+Gui.Form.gsForecast.Create(GsGridControl)
+Gui.Form.gsForecast.Size(16875,6795)
+Gui.Form.gsForecast.Position(11040,1215)
+Gui.Form.gsMerged.Create(GsGridControl)
+Gui.Form.gsMerged.Size(12345,5295)
+Gui.Form.gsMerged.Position(120,8130)
+Gui.Form.proBar3.Create(ProgressBar)
+Gui.Form.proBar3.Visible(False)
+Gui.Form.proBar3.Size(3720,120)
+Gui.Form.proBar3.Position(120,8010)
+Gui.Form.proBar4.Create(ProgressBar)
+Gui.Form.proBar4.Visible(False)
+Gui.Form.proBar4.Size(12315,105)
+Gui.Form.proBar4.Position(135,8010)
+Gui.Form.gsUpload.Create(GsGridControl)
+Gui.Form.gsUpload.Size(15330,5295)
+Gui.Form.gsUpload.Position(12585,8130)
+Gui.Form.cmdExport.Create(Button)
+Gui.Form.cmdExport.Size(570,375)
+Gui.Form.cmdExport.Position(27345,660)
+Gui.Form.cmdExport.Caption("Exp.")
+Gui.Form.cmdExport.Event(Click,cmdExport_Click)
+Gui.Form.cmdExport.Enabled(False)
+Gui.Form.cmdExport.FontSize(7)
+Gui.Form.cmdCreateEA850.Create(Button)
+Gui.Form.cmdCreateEA850.Size(1290,375)
+Gui.Form.cmdCreateEA850.Position(25995,660)
+Gui.Form.cmdCreateEA850.Caption("Create EA850")
+Gui.Form.cmdCreateEA850.Event(Click,cmdCreateEA850_Click)
+Gui.Form.cmdCreateEA850.Enabled(False)
+Gui.Form.cmdCreateEA850.FontSize(7)
+Gui.Form.cmdProcessFromCache.Create(Button)
+Gui.Form.cmdProcessFromCache.Size(1635,375)
+Gui.Form.cmdProcessFromCache.Position(21615,660)
+Gui.Form.cmdProcessFromCache.Caption("Process from Cache")
+Gui.Form.cmdProcessFromCache.Event(Click,cmdProcessFromCache_Click)
+Gui.Form.cmdProcessFromCache.FontSize(7)
+Gui.Form.cmdCompare.Create(Button)
+Gui.Form.cmdCompare.Size(1710,375)
+Gui.Form.cmdCompare.Position(24225,660)
+Gui.Form.cmdCompare.Caption("Compare Open Ords")
+Gui.Form.cmdCompare.FontSize(7)
+Gui.Form.cmdCompare.Event(Click,cmdCompare_Click)
+Gui.Form.cmdCompare.Enabled(False)
+Gui.Form.tab1.Create(Tab)
+Gui.Form.tab1.Size(10785,1095)
+Gui.Form.tab1.Position(120,90)
+Gui.Form.tab1.Tabs(2)
+Gui.Form.tab1.SetTab(0)
+Gui.Form.tab1.Caption("Commit")
+Gui.Form.tab1.SetTab(1)
+Gui.Form.tab1.Caption("Rev Source")
+Gui.Form.lbl1.Create(Label,"Commit",True,645,255,0,75,330,True,0,"Arial",8,-2147483633,0)
+Gui.Form.lbl1.Parent("tab1",0)
+Gui.Form.cmdBrowseCommitFile.Create(Button)
+Gui.Form.cmdBrowseCommitFile.Size(510,465)
+Gui.Form.cmdBrowseCommitFile.Position(8955,195)
+Gui.Form.cmdBrowseCommitFile.Caption("^")
+Gui.Form.cmdBrowseCommitFile.Event(Click,cmdBrowseCommitFile_Click)
+Gui.Form.cmdBrowseCommitFile.Parent("tab1",0)
+Gui.Form.proBar1.Create(ProgressBar)
+Gui.Form.proBar1.Visible(False)
+Gui.Form.proBar1.Size(7980,105)
+Gui.Form.proBar1.Position(870,45)
+Gui.Form.proBar1.Parent("tab1",0)
+Gui.Form.lbl3.Create(Label,"Rev Source",True,1020,255,0,15,225,True,0,"Arial",8,-2147483633,0)
+Gui.Form.lbl3.Parent("tab1",1)
+Gui.Form.cmdBrowseRevSource.Create(Button)
+Gui.Form.cmdBrowseRevSource.Size(510,285)
+Gui.Form.cmdBrowseRevSource.Position(7695,165)
+Gui.Form.cmdBrowseRevSource.Parent("tab1",1)
+Gui.Form.cmdBrowseRevSource.Caption("^")
+Gui.Form.cmdBrowseRevSource.Event(Click,cmdBrowseRevSource_Click)
+Gui.Form.lbl4.Create(Label,"Max Line",True,780,255,0,8295,225,True,0,"Arial",8,-2147483633,0)
+Gui.Form.lbl4.Parent("tab1",1)
+Gui.Form.txtMaxLine.Create(TextBox,"3000",True,525,300,0,9090,165,True,0,"Arial",8,-2147483643,1)
+Gui.Form.txtMaxLine.Parent("tab1",1)
+Gui.Form.txtMaxLine.NumericOnly(2)
+Gui.Form.cmdLoadRevSource.Create(Button)
+Gui.Form.cmdLoadRevSource.Size(945,375)
+Gui.Form.cmdLoadRevSource.Position(9675,120)
+Gui.Form.cmdLoadRevSource.Caption("Load Rev")
+Gui.Form.cmdLoadRevSource.Event(Click,cmdLoadRevSource_Click)
+Gui.Form.cmdLoadRevSource.Parent("tab1",1)
+Gui.Form.txtCommitFilePath.Create(TextBoxR)
+Gui.Form.txtCommitFilePath.Size(8070,465)
+Gui.Form.txtCommitFilePath.Position(825,195)
+Gui.Form.txtCommitFilePath.Parent("tab1",0)
+Gui.Form.txtCommitFilePath.Text("C:\Users\bnguyen\Desktop\Archieve\5631 Triple EDI Conversion\CALL TRI140-21120191553-1\Custom Change Report Specs.updated020419\20181214_1400EST_commits_TRIPLEINC_export.csv")
+Gui.Form.cmdSaveDefault.Create(Button)
+Gui.Form.cmdSaveDefault.Size(1095,645)
+Gui.Form.cmdSaveDefault.Position(9525,30)
+Gui.Form.cmdSaveDefault.Parent("tab1",0)
+Gui.Form.cmdSaveDefault.Caption("Save File Path")
+Gui.Form.cmdSaveDefault.FontSize(7)
+Gui.Form.cmdSaveDefault.Event(Click,cmdSaveDefault_Click)
+Gui.Form.txtRevSource.Create(TextBoxR)
+Gui.Form.txtRevSource.Size(6480,465)
+Gui.Form.txtRevSource.Position(1080,120)
+Gui.Form.txtRevSource.Parent("tab1",1)
+Gui.Form.txtRevSource.Text("C:\Users\bnguyen\Desktop\Archieve\5631 Triple EDI Conversion\CALL TRI140-21120191553-1\Custom Change Report Specs.updated020419\20181214_1400EST_commits_TRIPLEINC_export.csv")
+Gui.Form.txtForecastFilePath.Create(TextBoxR)
+Gui.Form.txtForecastFilePath.Size(9000,480)
+Gui.Form.txtForecastFilePath.Position(11850,645)
+Gui.Form.txtForecastFilePath.Text("C:\Users\bnguyen\Desktop\Archieve\5631 Triple EDI Conversion\CALL TRI140-21120191553-1\Custom Change Report Specs.updated020419\UTASGLOBAL_ZORDFCST_20181214140704.csv")
+Gui.Progress..Create
+Gui.Progress..Caption("Progress")
+Gui.Progress..Size(13680,1665)
+Gui.Progress..MinX(0)
+Gui.Progress..MinY(0)
+Gui.Progress..Position(0,0)
+Gui.Progress..BackColor(-2147483633)
+Gui.Progress..MousePointer(0)
+Gui.Progress..Event(UnLoad,Progress_UnLoad)
+Gui.Progress.ProMain.Create(ProgressBar)
+Gui.Progress.ProMain.Size(13035,165)
+Gui.Progress.ProMain.Position(225,255)
+Gui.Progress.proSub.Create(ProgressBar)
+Gui.Progress.proSub.Size(13035,165)
+Gui.Progress.proSub.Position(225,585)
+Gui.Progress.lblProcess.Create(Label,"",True,6285,255,0,225,945,True,0,"Arial",8,-2147483633,0)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+v.Global.bLoad.Declare
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+'BN July, 2019
+'Customer: Triple Inc.
+'This project will merge 2 csv file (one is usually named as Commit, the other is usually named as Forecast) and upload the target file as EA850 EDI file to GSS.
+'There are 2 types of Order in the 2 files: NON-LTA (numeric Orders) and LTA (Orders starting with alpha character, usually H or S)
+
+'Compare and Merge rules:
+'	NON-LTA (numeric Pos):  We will compare Order#, Item#, Location, Part.  If it is not a duplicate, then add records.
+'	LTA (Pos starting with alpha character):  We will compare Order#, Item#, Location, Part, and Req Date.  If it is not a duplicate, then add records.
+
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+	v.Local.bTable.Declare
+
+	f.ODBC.Connection!conx.OpenCompanyConnection(1000)
+	
+		'Check table
+	F.ODBC.Connection!conx.TableExists("GCG_5631_Rev",V.Local.bTable)
+	F.Intrinsic.Control.If(v.Local.bTable.Not)
+		F.ODBC.Connection!Conx.Execute("CREATE TABLE GCG_5631_Rev(OrderDocNo VARCHAR(30),Product VARCHAR(30),Rev VARCHAR(50) );")
+	F.Intrinsic.Control.EndIf	
+	
+	f.Intrinsic.Control.CallSub("Check_and_Create_Folder")
+	f.Intrinsic.Control.CallSub("Check_And_Create_DB")
+	
+	'Anchor 0 - None		1 - Top		2 - Bottom		4 - Left		8 - Right
+	gui.Form.gsMerged.Anchor(15)
+	gui.Form.gsForecast.Anchor(13)
+	gui.Form.gsUpload.Anchor(11)
+	gui.Form.proBar4.anchor(13)
+	gui.Form.proBar6.anchor(9)
+	gui.Form.tab1.SetTab(0)
+	gui.Form..Show
+
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+    F.Intrinsic.Control.CallSub("Unload")
+F.Intrinsic.Control.EndTry
+Program.Sub.Main.End
+
+Program.Sub.Form_UnLoad.Start
+f.Intrinsic.Control.If(v.Global.bLoad)
+	f.Intrinsic.Control.CallSub("Serialize")
+f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.CallSub("Unload")
+Program.Sub.Form_UnLoad.End
+
+Program.Sub.Unload.Start
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+
+	F.Intrinsic.Control.If(V.ODBC.conx.State,=,1)
+		F.ODBC.Connection!conx.close
+	F.Intrinsic.Control.EndIf
+	
+	f.Intrinsic.Control.End
+
+F.Intrinsic.Control.Catch
+	Function.Intrinsic.String.Build("Subroutine Error {0}{0}Subroutine: {1}{0}Error Occurred {2} with description {3}",V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End	
+F.Intrinsic.Control.EndTry
+Program.Sub.Unload.End
+
+Program.Sub.Check_and_Create_Folder.Start
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare	
+	v.Local.sDir.Declare
+	v.Local.bEx.Declare	
+	v.Local.sFile.Declare
+	v.Local.sContent.Declare
+	
+	'Check and create custom folder for project 5631
+	f.Intrinsic.String.Build("{0}\Custom\5631",v.Caller.GlobalDir,v.Local.sDir)
+	f.Intrinsic.File.DirExists(v.Local.sDir,v.Local.bEx)
+	f.Intrinsic.Control.If(v.Local.bEx.Not)
+		f.Intrinsic.File.CreateDir(v.Local.sDir)
+	f.Intrinsic.Control.EndIf
+
+	f.Intrinsic.String.Build("{0}\Custom\5631\{1}",v.Caller.GlobalDir,v.Caller.CompanyCode,v.Local.sDir)
+	f.Intrinsic.File.DirExists(v.Local.sDir,v.Local.bEx)
+	f.Intrinsic.Control.If(v.Local.bEx.Not)
+		f.Intrinsic.File.CreateDir(v.Local.sDir)
+	f.Intrinsic.Control.EndIf
+	'Set Default folder:
+	gui.Form.txtCommitFilePath.Text(v.Local.sDir)
+	gui.Form.txtForecastFilePath.Text(v.Local.sDir)
+	gui.Form.txtRevsource.Text(v.Local.sDir)
+	
+	f.Intrinsic.String.Build("{0}\Custom\5631\{1}\Cache",v.Caller.GlobalDir,v.Caller.CompanyCode,v.Local.sDir)
+	f.Intrinsic.File.DirExists(v.Local.sDir,v.Local.bEx)
+	f.Intrinsic.Control.If(v.Local.bEx.Not)
+		f.Intrinsic.File.CreateDir(v.Local.sDir)
+	f.Intrinsic.Control.EndIf	
+	
+	f.Intrinsic.String.Build("{0}\Custom\5631\{1}\Setting",v.Caller.GlobalDir,v.Caller.CompanyCode,v.Local.sDir)
+	f.Intrinsic.File.DirExists(v.Local.sDir,v.Local.bEx)
+	f.Intrinsic.Control.If(v.Local.bEx.Not)
+		f.Intrinsic.File.CreateDir(v.Local.sDir)
+	f.Intrinsic.Control.EndIf	
+	
+	'Check Default folder
+	f.Intrinsic.String.Build("{0}\Custom\5631\{1}\Setting\{2}_Commit.txt",v.Caller.GlobalDir,v.Caller.CompanyCode,v.Caller.User,v.Local.sFile)
+	f.Intrinsic.File.Exists(v.Local.sFile,v.Local.bEx)
+	f.Intrinsic.Control.If(v.Local.bEx)
+		f.Intrinsic.File.File2String(v.Local.sFile,v.Local.sContent)
+		gui.Form.txtCommitFilePath.Text(v.Local.sContent.Trim)
+	f.Intrinsic.Control.EndIf
+	
+	f.Intrinsic.String.Build("{0}\Custom\5631\{1}\Setting\{2}_Rev.txt",v.Caller.GlobalDir,v.Caller.CompanyCode,v.Caller.User,v.Local.sFile)
+	f.Intrinsic.File.Exists(v.Local.sFile,v.Local.bEx)
+	f.Intrinsic.Control.If(v.Local.bEx)
+		f.Intrinsic.File.File2String(v.Local.sFile,v.Local.sContent)
+		gui.Form.txtRevsource.Text(v.Local.sContent.Trim)
+	f.Intrinsic.Control.EndIf
+
+	f.Intrinsic.String.Build("{0}\Custom\5631\{1}\Setting\{2}_Forecast.txt",v.Caller.GlobalDir,v.Caller.CompanyCode,v.Caller.User,v.Local.sFile)
+	f.Intrinsic.File.Exists(v.Local.sFile,v.Local.bEx)
+	f.Intrinsic.Control.If(v.Local.bEx)
+		f.Intrinsic.File.File2String(v.Local.sFile,v.Local.sContent)
+		gui.Form.txtForecastFilePath.Text(v.Local.sContent.Trim)
+	f.Intrinsic.Control.EndIf	
+
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+       F.Intrinsic.Control.CallSub("Unload")
+F.Intrinsic.Control.EndTry
+Program.Sub.Check_and_Create_Folder.End
+
+Program.Sub.Check_And_Create_DB.Start
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+	v.Local.bExist.Declare
+	
+	'Create custom table
+	F.ODBC.Connection!conx.TableExists("GCG_5631_ToUpload",v.Local.bExist)
+	f.Intrinsic.Control.If(v.Local.bExist,=,false)
+		f.Intrinsic.UI.InvokeWaitDialog("Creating custom table GCG_5631_ToUpload ...")
+		f.ODBC.Connection!conx.Execute("CREATE TABLE GCG_5631_ToUpload ( FileHeader INTEGER, Num INTEGER, Type VARCHAR(7), Priority VARCHAR(10), Part VARCHAR(20), OpenQty INTEGER, OrderID VARCHAR(15), ItemID VARCHAR(15), Locn CHAR(4), ReqDate DATE, NumFromForecast INTEGER, A_1 CHAR(1), KeyFigure VARCHAR(50), UploadGridNum INTEGER );")
+		f.Intrinsic.UI.CloseWaitDialog
+	f.Intrinsic.Control.Endif
+	
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+        F.Intrinsic.Control.CallSub("Unload")
+F.Intrinsic.Control.EndTry	
+	
+Program.Sub.Check_And_Create_DB.End
+
+Program.Sub.cmdBrowseCommitFile_Click.Start
+'CommitFileBrowser
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+	v.Local.sFilePath.Declare
+	v.Local.sDir.Declare
+	
+	'Default folder
+	f.Intrinsic.String.Build("{0}\Custom\5631\{1}",v.Caller.GlobalDir,v.Caller.CompanyCode,v.Local.sDir)
+	F.Intrinsic.UI.ShowOpenFileDialog(V.Local.sDir,"*|*.csv*","",V.Local.sFilePath)
+	F.Intrinsic.Control.If(V.Local.sFilePath,=,"***CANCEL***")
+		F.Intrinsic.UI.Msgbox("No File Was Selected")
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+	gui.Form.txtCommitFilePath.Text(v.Local.sFilePath)
+
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+       F.Intrinsic.Control.CallSub("Unload")
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdBrowseCommitFile_Click.End
+
+Program.Sub.cmdBrowseForecastFile_Click.Start
+'BrowseForecastFile
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+	v.Local.sFilePath.Declare
+	v.Local.sDir.Declare
+	
+	'Default folder
+	f.Intrinsic.String.Build("{0}\Custom\5631\{1}",v.Caller.GlobalDir,v.Caller.CompanyCode,v.Local.sDir)
+	F.Intrinsic.UI.ShowOpenFileDialog(V.Local.sDir,"*|*.csv*","",V.Local.sFilePath)
+	F.Intrinsic.Control.If(V.Local.sFilePath,=,"***CANCEL***")
+		F.Intrinsic.UI.Msgbox("No File Was Selected")
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+	gui.Form.txtForecastFilePath.Text(v.Local.sFilePath)
+
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+       F.Intrinsic.Control.CallSub("Unload")
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdBrowseForecastFile_Click.End
+
+Program.Sub.cmdProcess_Click.Start
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+	v.Local.bEx.Declare
+	v.Local.sCommitFile.Declare
+	v.Local.sForecastFile.Declare
+		
+	'Check file existing
+	v.Local.sCommitFile.Set(v.Screen.Form!txtCommitFilePath.text.trim)
+	v.Local.sForecastFile.Set(v.Screen.Form!txtForecastFilePath.text.trim)
+	f.Intrinsic.File.Exists(v.Local.sCommitFile,v.Local.bEx)
+	f.Intrinsic.Control.If(v.Local.bEx.Not)
+		f.Intrinsic.UI.Msgbox("Commit File does not exist")
+		f.Intrinsic.Control.ExitSub
+	f.Intrinsic.Control.EndIf
+	
+	f.Intrinsic.File.Exists(v.Local.sForecastFile,v.Local.bEx)
+	f.Intrinsic.Control.If(v.Local.bEx.Not)
+		f.Intrinsic.UI.Msgbox("Forecast File does not exist")
+		f.Intrinsic.Control.ExitSub
+	f.Intrinsic.Control.EndIf	
+	
+	f.Intrinsic.Control.If(v.Global.bLoad)
+		f.Intrinsic.Control.CallSub("Serialize")
+	f.Intrinsic.Control.EndIf	
+	
+	'For cache in Custom\5631\Cache
+	f.Intrinsic.Control.CallSub("Get_File_Header_Create_XMLFileNames","sCommitFile",v.Local.sCommitFile)
+	
+	f.Intrinsic.Control.CallSub("Parse_Commit_File")
+	f.Intrinsic.Control.CallSub("Parse_Forecast_File")
+	f.Intrinsic.Control.CallSub("Merge_Tables","sCommitFileHeader",v.Args.sCommitFileHeader)
+	f.Intrinsic.Control.If(v.DataTable.UploadTB.Exists)
+		f.Intrinsic.Control.If(v.DataTable.UploadTB.RowCount,>,0)
+			gui.Form.cmdCreateEA850.Enabled(True)
+			gui.Form.cmdExport.Enabled(True)
+			gui.Form.cmdCompare.Enabled(True)
+		f.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.EndIf
+		
+	f.Intrinsic.UI.InvokeWaitDialog("Saving cache...")
+	F.Data.DataTable.SaveToXML("CMT",0,True,V.Args.sXMLCommit)
+	F.Data.DataTable.SaveToXML("Forecast",0,True,V.Args.sXMLForecast)
+	F.Data.DataTable.SaveToXML("MergedTB",0,True,V.Args.sXMLMerged)
+	F.Data.DataTable.SaveToXML("UploadTB",0,True,V.Args.sXMLUpload)
+	f.Intrinsic.UI.CloseWaitDialog
+	f.Intrinsic.Control.CallSub("Deserialize")
+	v.Global.bLoad.Set(True)	
+	
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+       F.Intrinsic.Control.CallSub("Unload")
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdProcess_Click.End
+
+Program.Sub.cmdProcessFromCache_Click.Start
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare	
+	v.Local.bEx.Declare
+	v.Local.sCommitFile.Declare
+	v.Local.sHold.Declare
+	
+	'Check file existing
+	v.Local.sCommitFile.Set(v.Screen.Form!txtCommitFilePath.text.trim)
+	f.Intrinsic.File.Exists(v.Local.sCommitFile,v.Local.bEx)
+	f.Intrinsic.Control.If(v.Local.bEx.Not)
+		f.Intrinsic.UI.Msgbox("Commit File does not exist")
+		f.Intrinsic.Control.ExitSub
+	f.Intrinsic.Control.EndIf
+	
+	f.Intrinsic.Control.CallSub("Get_File_Header_Create_XMLFileNames","sCommitFile",v.Local.sCommitFile)
+	'Check if cache XML files exist
+	f.Intrinsic.File.Exists(v.Args.sXMLCommit,v.Local.bEx)
+	f.Intrinsic.Control.If(v.Local.bEx.Not)
+		f.Intrinsic.String.Build("{0} does not exist.",v.Args.sXMLCommit,v.Local.sHold)
+		f.Intrinsic.UI.Msgbox(v.Local.sHold,"Attention")
+		f.Intrinsic.Control.ExitSub
+	f.Intrinsic.Control.EndIf	
+	f.Intrinsic.File.Exists(v.Args.sXMLForecast,v.Local.bEx)
+	f.Intrinsic.Control.If(v.Local.bEx.Not)
+		f.Intrinsic.String.Build("{0} does not exist.",v.Args.sXMLForecast,v.Local.sHold)
+		f.Intrinsic.UI.Msgbox(v.Local.sHold,"Attention")
+		f.Intrinsic.Control.ExitSub
+	f.Intrinsic.Control.EndIf
+	f.Intrinsic.File.Exists(v.Args.sXMLMerged,v.Local.bEx)
+	f.Intrinsic.Control.If(v.Local.bEx.Not)
+		f.Intrinsic.String.Build("{0} does not exist.",v.Args.sXMLMerged,v.Local.sHold)
+		f.Intrinsic.UI.Msgbox(v.Local.sHold,"Attention")
+		f.Intrinsic.Control.ExitSub
+	f.Intrinsic.Control.EndIf
+	f.Intrinsic.File.Exists(v.Args.sXMLUpload,v.Local.bEx)
+	f.Intrinsic.Control.If(v.Local.bEx.Not)
+		f.Intrinsic.String.Build("{0} does not exist.",v.Args.sXMLUpload,v.Local.sHold)
+		f.Intrinsic.UI.Msgbox(v.Local.sHold,"Attention")
+		f.Intrinsic.Control.ExitSub
+	f.Intrinsic.Control.EndIf	
+	
+	f.Intrinsic.UI.InvokeWaitDialog("Processing from cache...")
+	
+	f.Intrinsic.Control.If(v.Global.bLoad)
+		f.Intrinsic.Control.CallSub("Serialize")
+	f.Intrinsic.Control.EndIf
+	
+	f.Intrinsic.Control.If(v.DataTable.CMT.Exists)
+		f.Data.DataTable.Close("CMT")
+	f.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.If(v.DataTable.Forecast.Exists)
+		f.Data.DataTable.Close("Forecast")
+	f.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.If(v.DataTable.MergedTB.Exists)
+		f.Data.DataTable.Close("MergedTB")
+	f.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.If(v.DataTable.UploadTB.Exists)
+		f.Data.DataTable.Close("UploadTB")
+	f.Intrinsic.Control.EndIf	
+	
+	F.Data.DataTable.CreateFromXML("CMT",V.Args.sXMLCommit,True)	
+	F.Data.DataTable.CreateFromXML("Forecast",V.Args.sXMLForecast,True)	
+	F.Data.DataTable.CreateFromXML("MergedTB",V.Args.sXMLMerged,True)	
+	F.Data.DataTable.CreateFromXML("UploadTB",V.Args.sXMLUpload,True)	
+	
+	f.Intrinsic.Control.CallSub("Format_gsCommit")
+	f.Intrinsic.Control.CallSub("Format_gsForecast")
+	f.Intrinsic.Control.CallSub("Format_gsMerged")
+	f.Intrinsic.Control.CallSub("Format_gsUpload")
+
+	gui.Form.cmdCreateEA850.Enabled(True)
+	gui.Form.cmdExport.Enabled(True)
+	gui.Form.cmdCompare.Enabled(True)
+	
+	f.Intrinsic.Control.CallSub("Deserialize")
+	v.Global.bLoad.Set(True)
+	
+	f.Intrinsic.UI.CloseWaitDialog
+	
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+       F.Intrinsic.Control.CallSub("Unload")
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdProcessFromCache_Click.End
+
+Program.Sub.Get_File_Header_Create_XMLFileNames.Start
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+	v.Local.bEx.Declare
+	v.Local.sCommitFile.Declare
+	v.Local.sCommitFileHeader.Declare
+	v.Local.sForecastFile.Declare
+	v.Local.sFileName.Declare	
+	v.Local.sXMLCommit.Declare
+	v.Local.sXMLForecast.Declare
+	v.Local.sXMLMerged.Declare
+	v.Local.sXMLUpload.Declare	
+	
+	'Check file existing
+	f.Intrinsic.String.Split(v.Args.sCommitFile,"\",v.Local.sCommitFile)
+	v.Local.sFileName.Set(v.Local.sCommitFile(v.Local.sCommitFile.UBound))
+	f.Intrinsic.String.Replace(v.Local.sFileName,".csv","",v.Local.sCommitFile)
+	f.Intrinsic.String.Split(v.Local.sFileName,"_",v.Local.sCommitFile)
+	v.Local.sCommitFileHeader.Set(v.Local.sCommitFile(0))
+		
+	f.Intrinsic.String.Build("{0}\Custom\5631\{1}\Cache\Commit_{2}.xml",v.Caller.GlobalDir,v.Caller.CompanyCode,v.local.sCommitFileHeader,v.Local.sXMLCommit)
+	f.Intrinsic.String.Build("{0}\Custom\5631\{1}\Cache\Forecast_{2}.xml",v.Caller.GlobalDir,v.Caller.CompanyCode,v.local.sCommitFileHeader,v.Local.sXMLForecast)
+	f.Intrinsic.String.Build("{0}\Custom\5631\{1}\Cache\Merged_{2}.xml",v.Caller.GlobalDir,v.Caller.CompanyCode,v.local.sCommitFileHeader,v.Local.sXMLMerged)
+	f.Intrinsic.String.Build("{0}\Custom\5631\{1}\Cache\Upload_{2}.xml",v.Caller.GlobalDir,v.Caller.CompanyCode,v.local.sCommitFileHeader,v.Local.sXMLUpload)
+	
+	f.Intrinsic.Variable.AddRV("sCommitFileHeader",v.Local.sCommitFile)
+	f.Intrinsic.Variable.AddRV("sXMLCommit",v.Local.sXMLCommit)
+	f.Intrinsic.Variable.AddRV("sXMLForecast",v.Local.sXMLForecast)
+	f.Intrinsic.Variable.AddRV("sXMLMerged",v.Local.sXMLMerged)
+	f.Intrinsic.Variable.AddRV("sXMLUpload",v.Local.sXMLUpload)
+	
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+       F.Intrinsic.Control.CallSub("Unload")
+F.Intrinsic.Control.EndTry
+Program.Sub.Get_File_Header_Create_XMLFileNames.End
+
+Program.Sub.Parse_Commit_File.Start
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+	v.Local.bExist.Declare
+	v.Local.sCommitContent.Declare
+	v.Local.iCnt.Declare
+	v.Local.sLine.Declare
+	v.Local.iHold.Declare
+	v.Local.bNumeric.Declare
+	v.Local.sLTAType.Declare
+	v.Local.fOpenQty.Declare
+	v.Local.dReqDate.Declare
+	v.Local.bDate.Declare
+	v.Local.sOrderID.Declare
+	v.Local.iOrderID.Declare	
+
+	f.Intrinsic.Control.CallSub("cmdLoadRevSource_Click")
+
+	f.Intrinsic.File.File2String(v.Screen.Form!txtCommitFilePath.Text.Trim,v.Local.sCommitContent)
+	f.Intrinsic.String.Split(v.Local.sCommitContent,v.Ambient.NewLine,v.Local.sCommitContent)
+	
+	f.Intrinsic.Control.If(v.DataTable.CMT.Exists)
+		f.Data.DataTable.Close("CMT")
+	f.Intrinsic.Control.EndIf
+	f.Data.DataTable.Create("CMT",True)	
+	f.Data.DataTable.AddColumn("CMT","Num","Long")
+	f.Data.DataTable.AddColumn("CMT","Type","String","")
+	f.Data.DataTable.AddColumn("CMT","Priority","String","")
+	f.Data.DataTable.AddColumn("CMT","PartNoRev","String","")
+	f.Data.DataTable.AddColumn("CMT","Rev","String","")
+	f.Data.DataTable.AddColumn("CMT","OpenQty","float",0)
+	f.Data.DataTable.AddColumn("CMT","OrderID","String","")
+	f.Data.DataTable.AddColumn("CMT","ItemID","String","")
+	f.Data.DataTable.AddColumn("CMT","SchLine","String","")
+	f.Data.DataTable.AddColumn("CMT","Locn","String","")
+	f.Data.DataTable.AddColumn("CMT","ReqDate","Date","01-01-1900")
+	f.Data.DataTable.AddColumn("CMT","OTDDate","String","")
+	
+	'Loop the sCommitContent
+	f.Intrinsic.Math.Add(v.Local.sCommitContent.UBound,1,v.Local.iHold)
+	gui.Form.proBar1.Visible(True)
+	gui.Form.proBar1.Max(v.Local.iHold)
+		
+	f.Intrinsic.Control.For(v.Local.iCnt,13,v.Local.sCommitContent.UBound,1)
+		'Set indicator
+		gui.Form.proBar1.Value(v.Local.iCnt)
+		
+		f.Intrinsic.String.Split(v.Local.sCommitContent(v.Local.iCnt),",",v.Local.sLine)
+
+		f.Intrinsic.Control.If(v.Local.sLine(1).Trim,<>,"OOB")
+			'Check LTA/Non-LTA
+			f.Intrinsic.Math.IsNumeric(v.Local.sLine(3).Trim,v.Local.bNumeric)
+			f.Intrinsic.Control.If(v.Local.bNumeric)
+				v.Local.sLTAType.Set("NON-LTA")
+				v.Local.iOrderID.Set(v.Local.sLine(3).Trim)
+				v.Local.sOrderID.Set(v.Local.iOrderID)
+			f.Intrinsic.Control.Else
+				V.Local.sLTAType.Set("LTA")
+				v.Local.sOrderID.Set(v.Local.sLine(3).Trim)
+			f.Intrinsic.Control.EndIf
+			
+			'Get OpenQty
+			f.Intrinsic.Math.IsNumeric(v.Local.sLine(2).Trim,v.Local.bNumeric)
+			f.Intrinsic.Control.If(v.Local.bNumeric)
+				v.Local.fOpenQty.Set(v.Local.sLine(2).Trim)
+			f.Intrinsic.Control.Else
+				v.Local.fOpenQty.Set(0)
+			f.Intrinsic.Control.EndIf
+			
+			f.Intrinsic.Date.IsDate(v.Local.sLine(7).Trim,v.Local.bDate)
+			f.Intrinsic.Control.If(v.Local.bDate)
+				v.Local.dReqDate.Set(v.Local.sLine(7).Trim)
+			f.Intrinsic.Control.Else
+				v.Local.dReqDate.Set("01/01/1900")
+			f.Intrinsic.Control.EndIf
+			
+			f.Data.DataTable.AddRow("CMT","Type",v.Local.sLTAType,"Priority",v.Local.sLine(0).Trim,"PartNoRev",v.Local.sLine(1).Trim,"OpenQty",v.Local.fOpenQty,"OrderID",v.Local.sOrderID,"ItemID",v.Local.sLine(4).Trim,"SchLine",v.Local.sLine(5).Trim,"Locn",v.Local.sLine(6).Trim,"ReqDate",v.Local.dReqDate,"OTDDate",v.Local.sLine(8).Trim)		
+		f.Intrinsic.Control.EndIf
+	
+	f.Intrinsic.Control.Next(v.Local.iCnt)
+	
+	f.Data.DataTable.AddExpressionColumn("CMT","OrderPart","String","[OrderID] + '@' + [PartNoRev]")
+	f.Data.Datatable.FillFromDictionary("CMT","RevDict","OrderPart","Rev")
+	f.Data.DataTable.AddExpressionColumn("CMT","PartNoRev17","String","SubString([PartNoRev] + '                    ',1,17)")
+	f.Data.DataTable.AddExpressionColumn("CMT","Part","String","[PartNoRev17] + [Rev]")
+	gui.Form.proBar1.Visible(False)
+	
+	'Set series as for displaying Excel line number
+	f.Data.DataTable.SetSeries("CMT","Num",14,1)	
+	f.Intrinsic.Control.CallSub("Format_gsCommit")
+	
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+        F.Intrinsic.Control.CallSub("Unload")
+F.Intrinsic.Control.EndTry
+Program.Sub.Parse_Commit_File.End
+
+Program.Sub.Format_gsCommit.Start
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+
+	'Add and Format grid Commit
+	gui.Form.gsCommit.AddGridviewFromDatatable("gvCmt","CMT")
+	Gui.Form.gsCommit.SetGridViewProperty("gvCmt","AllowSort",True)
+	Gui.Form.gsCommit.SetGridViewProperty("gvCmt","AllowFilter",True)
+	Gui.Form.gsCommit.SetGridViewProperty("gvCmt","OptionsFindAlwaysVisible",True)
+	Gui.Form.gsCommit.SetGridViewProperty("gvCmt","EnableAppearanceOddRow",False)
+	Gui.Form.gsCommit.SetGridViewProperty("gvCmt","OptionsViewShowAutoFilterRow",True)
+	Gui.Form.gsCommit.SetGridViewProperty("gvCmt","AllowColumnResizing",True)
+	Gui.Form.gsCommit.SetGridViewProperty("gvCmt","OptionsViewColumnAutoWidth",False)	
+	
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","Num","Width","35")
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","Type","Width","50")
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","Priority","Width","45")
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","Part","Width","130")
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","OpenQty","Width","75")
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","ItemID","Width","45")
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","SchLine","Width","35")
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","Locn","Width","40")
+	
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","Part","Visibleindex",3)
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","Locn","Visibleindex",4)
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","OpenQty","Visibleindex",8)
+	
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","OrderPart","Visible",False)
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","PartNoRev","Visible",False)
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","PartNoRev17","Visible",False)
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","Rev","Visible",False)
+		
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","OpenQty","CellHAlignment","far")
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","OpenQty","HeaderHAlignment","far")
+	
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","ItemID","CellHAlignment","far")
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","ItemID","HeaderHAlignment","far")
+	
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","SchLine","CellHAlignment","far")
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","SchLine","HeaderHAlignment","far")	
+	
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","Num","HeaderHAlignment","far")	
+	
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","OpenQty","DisplayCustomNumeric","###,###,###,###")
+	
+	gui.Form.gsCommit.AddSummaryItem("gvCmt","OpenQty","SumCmtOpenQty","Sum","","","n")
+	gui.Form.gsCommit.SetColumnProperty("gvCmt","ReqDate","DisplayCustomDatetime","d")	'
+		
+	gui.Form.gsCommit.MainView("gvCmt")	
+	
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+        F.Intrinsic.Control.CallSub("Unload")
+F.Intrinsic.Control.EndTry
+Program.Sub.Format_gsCommit.End
+
+Program.Sub.Parse_Forecast_File.Start
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+	v.Local.bExist.Declare
+	v.Local.sForecastContent.Declare
+	v.Local.iCnt.Declare
+	v.Local.sLine.Declare
+	v.Local.iHold.Declare
+	v.Local.sHold.Declare
+	v.Local.sPreviousPart.Declare
+	v.Local.sPreviousFlag.Declare
+	v.Local.sCurrentPart.Declare
+	v.Local.sCurrentFlag.Declare
+	
+	v.local.sMonth.Declare
+	v.Local.sDate.Declare
+	v.Local.dDate.Declare	
+	
+	v.Local.sExpression.Declare
+	v.Local.iInner.Declare
+	v.Local.iPeriod.Declare
+	v.Local.bNumeric.Declare
+
+	v.Local.sCurrentLocn.Declare
+	v.Local.sPreviousLocn.Declare
+
+	v.Local.fTotal.Declare
+	v.Local.fCulmulated.Declare
+	
+	v.Local.sLTAType.Declare
+	v.Local.dReqDeliveryDate.Declare
+	v.Local.bDate.Declare
+	v.Local.iOrderID.Declare
+	v.Local.sOrderID.Declare
+	
+	f.Intrinsic.File.File2String(v.Screen.Form!txtForecastFilePath.Text.Trim,v.Local.sForecastContent)
+	f.Intrinsic.String.Replace(v.Local.sForecastContent,v.Ambient.DblQuote,"",v.Local.sForecastContent)
+	f.Intrinsic.String.Split(v.Local.sForecastContent,v.Ambient.NewLine,v.Local.sForecastContent)
+	
+	f.Intrinsic.Control.If(v.DataTable.Forecast.Exists)
+		f.Data.DataTable.Close("Forecast")
+	f.Intrinsic.Control.EndIf
+	f.Data.DataTable.Create("Forecast",True)
+	
+	'Add Columns
+	f.Data.DataTable.AddColumn("Forecast","Num","Long")
+	f.Data.DataTable.AddColumn("Forecast","Add","String","")
+	f.Data.DataTable.AddColumn("Forecast","Type","String","")
+	f.Data.DataTable.AddColumn("Forecast","PartNoRev","String","")
+	f.Data.DataTable.AddColumn("Forecast","Rev","String","")
+	f.Data.DataTable.AddColumn("Forecast","KeyFigure","String","")
+	f.Data.DataTable.AddColumn("Forecast","Locn","String","")
+	f.Data.DataTable.AddColumn("Forecast","OrderID","String","")
+	f.Data.DataTable.AddColumn("Forecast","ItemID","String","")
+	f.Data.DataTable.AddColumn("Forecast","ReqDelivery","Date","01-01-1900")
+	
+	'Add 35 Periods columns
+	f.Intrinsic.Control.For(v.Local.iCnt,0,50,1)
+		f.Intrinsic.String.Build("Period{0}",v.Local.iCnt,v.Local.sHold)
+		f.Data.DataTable.AddColumn("Forecast",v.Local.sHold,"float")
+		f.Intrinsic.Control.If(v.Local.iCnt,=,0)
+			v.Local.sExpression.Set("IsNull([Period0],0)")
+		f.Intrinsic.Control.Else
+			f.Intrinsic.String.Build("{0} + IsNull([Period{1}],0)",v.Local.sExpression,v.Local.iCnt,v.Local.sExpression)
+		f.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.Next(v.Local.iCnt)
+
+	'Loop the sForecastContent
+	f.Intrinsic.Math.Add(v.Local.sForecastContent.UBound,1,v.Local.iHold)
+	gui.Form.proBar2.Visible(True)
+	gui.Form.proBar2.Max(v.Local.iHold)
+	
+	f.Intrinsic.Control.For(v.Local.iCnt,2,v.Local.sForecastContent.UBound,1)
+	
+		'Set indicator
+		gui.Form.proBar2.Value(v.Local.iCnt)
+		f.Intrinsic.String.Split(v.Local.sForecastContent(v.Local.iCnt),",",v.Local.sLine)
+	
+		'Check LTA/Non-LTA
+		f.Intrinsic.Math.IsNumeric(v.Local.sLine(15).Trim,v.Local.bNumeric)
+		f.Intrinsic.Control.If(v.Local.bNumeric)
+			v.Local.sLTAType.Set("NON-LTA")
+			v.Local.iOrderID.Set(v.Local.sLine(15).Trim)
+			v.Local.sOrderID.Set(v.Local.iOrderID)
+		f.Intrinsic.Control.Else
+			V.Local.sLTAType.Set("LTA")
+			v.Local.sOrderID.Set(v.Local.sLine(15).Trim)
+		f.Intrinsic.Control.EndIf		
+	
+		'Use this to know when Part changes from line to line
+		f.Intrinsic.Control.If(v.Local.sLine(0).Trim,=,"")
+			v.Local.sCurrentPart.Set(v.Local.sPreviousPart)			
+		f.Intrinsic.Control.Else
+			v.Local.sCurrentPart.Set(v.Local.sLine(0))			
+			v.Local.sPreviousPart.Set(v.Local.sLine(0))			
+		f.Intrinsic.Control.EndIf
+		
+		'Use this to know when Location changes from line to line
+		f.Intrinsic.Control.If(v.Local.sLine(2).Trim,=,"")
+			v.Local.sCurrentLocn.Set(v.Local.sPreviousLocn)
+		f.Intrinsic.Control.Else
+			v.Local.sCurrentLocn.Set(v.Local.sLine(2))
+			v.Local.sPreviousLocn.Set(v.Local.sLine(2))
+		f.Intrinsic.Control.EndIf
+		
+		'Set Date
+		v.Local.sDate.Set(v.Local.sLine(17))
+		f.Intrinsic.String.Mid(v.Local.sDate,5,2,v.Local.sMonth)
+		f.Intrinsic.String.Build("{0}/{1}/{2}",v.Local.sMonth,v.Local.sDate.right2,v.Local.sDate.left4,v.Local.sDate)
+	
+		f.Intrinsic.Date.IsDate(v.Local.sDate,v.Local.bDate)
+		f.Intrinsic.Control.If(v.Local.bDate)
+			v.Local.dReqDeliveryDate.Set(v.Local.sDate)
+		f.Intrinsic.Control.Else
+			v.Local.dReqDeliveryDate.Set("01/01/1900")
+		f.Intrinsic.Control.EndIf	
+		
+		f.Data.DataTable.AddRow("Forecast","Type",v.Local.sLTAType,"PartNoRev",v.Local.sCurrentPart.Trim,"KeyFigure",v.Local.sLine(1).Trim,"Locn",v.Local.sCurrentLocn.Trim,"OrderID",v.Local.sOrderID,"ItemID",v.Local.sLine(16).Trim,"ReqDelivery",v.Local.dReqDeliveryDate)	
+		
+		'Set Period qty
+		f.Intrinsic.Control.For(v.Local.iInner,18,68,1)
+			f.Intrinsic.Math.Sub(v.Local.iInner,18,v.Local.iPeriod)
+			f.Intrinsic.Math.IsNumeric(v.Local.sLine(v.Local.iInner).Trim,v.Local.bNumeric)
+			f.Intrinsic.Control.If(v.Local.bNumeric)
+				f.Intrinsic.String.Build("Period{0}",v.Local.iPeriod,v.Local.sHold)
+				f.Data.DataTable.SetValue("Forecast",v.DataTable.Forecast.RowCount--,v.Local.sHold,v.Local.sLine(v.Local.iInner).Trim)
+			f.Intrinsic.Control.EndIf
+		f.Intrinsic.Control.Next(v.Local.iInner)
+		
+	f.Intrinsic.Control.Next(v.Local.iCnt)	
+	
+	f.Data.DataTable.AddExpressionColumn("Forecast","TotalPeriod",Float,v.Local.sExpression)
+	
+	f.Data.DataTable.SetSeries("Forecast","Num",3,1)
+	
+	gui.Form.proBar2.Max(v.DataTable.Forecast.RowCount)
+	f.Intrinsic.Control.For(v.Local.iCnt,0,v.DataTable.Forecast.RowCount--,1)
+		'Set indicator
+		gui.Form.proBar2.Value(v.Local.iCnt)
+		f.Intrinsic.Control.If(v.DataTable.Forecast(v.Local.iCnt).KeyFigure!FieldValTrim,=,"Firm")
+			v.Local.fTotal.Set(v.DataTable.Forecast(v.Local.iCnt).TotalPeriod!FieldValString)
+			v.Local.fCulmulated.Set(0)
+		f.Intrinsic.Control.ElseIf(v.DataTable.Forecast(v.Local.iCnt).KeyFigure!FieldValTrim,=,"Planned")	
+			v.Local.fCulmulated.Set(0)
+		f.Intrinsic.Control.Else
+			f.Intrinsic.Math.Add(v.DataTable.Forecast(v.Local.iCnt).TotalPeriod!FieldValString,v.Local.fCulmulated,v.Local.fCulmulated)
+			f.Intrinsic.Control.If(v.Local.fCulmulated,<=,v.Local.fTotal)
+				f.Data.DataTable.SetValue("Forecast",v.Local.iCnt,"KeyFigure","FirmLine")
+			f.Intrinsic.Control.Else
+				f.Data.DataTable.SetValue("Forecast",v.Local.iCnt,"KeyFigure","PlannedLine")
+			f.Intrinsic.Control.EndIf
+		f.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.Next(v.Local.iCnt)
+	gui.Form.proBar2.Visible(False)
+	
+	f.Data.DataTable.AddExpressionColumn("Forecast","OrderPart","String","[OrderID] + '@' + [PartNoRev]")
+	f.Data.Datatable.FillFromDictionary("Forecast","RevDict","OrderPart","Rev")
+	f.Data.DataTable.AddExpressionColumn("Forecast","PartNoRev17","String","SubString([PartNoRev] + '                    ',1,17)")
+	f.Data.DataTable.AddExpressionColumn("Forecast","Part","String","[PartNoRev17] + [Rev]")
+	gui.Form.proBar1.Visible(False)
+	
+	f.Intrinsic.Control.CallSub("Format_gsForecast")
+	
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+        F.Intrinsic.Control.CallSub("Unload")
+F.Intrinsic.Control.EndTry
+Program.Sub.Parse_Forecast_File.End
+
+Program.Sub.Format_gsForecast.Start
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+	v.Local.iCnt.Declare
+	v.Local.sHold.Declare
+	v.Local.sVisibleIndex.Declare
+	
+	'Add gridview and format
+	gui.Form.gsForecast.AddGridviewFromDatatable("gvForecast","Forecast")
+	Gui.Form.gsForecast.SetGridViewProperty("gvForecast","AllowSort",True)
+	Gui.Form.gsForecast.SetGridViewProperty("gvForecast","AllowFilter",True)
+	Gui.Form.gsForecast.SetGridViewProperty("gvForecast","OptionsFindAlwaysVisible",True)
+	Gui.Form.gsForecast.SetGridViewProperty("gvForecast","EnableAppearanceOddRow",False)
+	Gui.Form.gsForecast.SetGridViewProperty("gvForecast","OptionsViewShowAutoFilterRow",True)
+	Gui.Form.gsForecast.SetGridViewProperty("gvForecast","AllowColumnResizing",True)
+	Gui.Form.gsForecast.SetGridViewProperty("gvForecast","OptionsViewColumnAutoWidth",False)
+	
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","Num","Width","35")
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","Type","Width","50")
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","Add","Width","35")
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","KeyFigure","Width","60")
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","Part","Width","130")
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","Locn","Width","40")
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","OrderID","Width","65")
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","ItemID","Width","65")
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","TotalPeriod","Width","85")
+	
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","KeyFigure","Visibleindex",3)
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","Part","Visibleindex",4)	
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","Locn","Visibleindex",5)
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","TotalPeriod","VisibleIndex",9)
+	
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","OrderPart","Visible",False)
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","PartNoRev","Visible",False)
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","PartNoRev17","Visible",False)
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","Rev","Visible",False)
+
+'	v.Local.sVisibleIndex.Set("Num,Type,Priority,Part,PartNoRev,PartNoRev17,Rev,Locn,OpenQty,SchLine,OrderID,ItemID,ReqDate,OTDDate,OrderPart")
+'	f.Intrinsic.String.Split(v.Local.sVisibleIndex,",",v.Local.sVisibleIndex)
+'	f.Intrinsic.Control.For(v.Local.iCnt,0,v.Local.sVisibleIndex.UBound,1)
+'		gui.Form.gsForecast.SetColumnProperty("gvForecast","TotalPeriod","VisibleIndex",9)
+'	f.Intrinsic.Control.Next(v.Local.iCnt)
+	f.Intrinsic.Control.For(v.Local.iCnt,0,35,1)
+		f.Intrinsic.String.Build("Period{0}",v.Local.iCnt,v.Local.sHold)
+		gui.Form.gsForecast.SetColumnProperty("gvForecast",v.Local.sHold,"HeaderHAlignment","far")
+		gui.Form.gsForecast.SetColumnProperty("gvForecast",v.Local.sHold,"Width","45")
+	f.Intrinsic.Control.Next(v.Local.iCnt)
+	
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","Add","CellHAlignment","center")
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","Add","HeaderHAlignment","center")
+
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","TotalPeriod","CellHAlignment","far")
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","TotalPeriod","HeaderHAlignment","far")
+	
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","ItemID","CellHAlignment","far")
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","ItemID","HeaderHAlignment","far")
+	
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","TotalPeriod","DisplayCustomNumeric","###,###,###,###")	
+	
+	gui.Form.gsForecast.AddSummaryItem("gvForecast","TotalPeriod","SumTotalPeriod","Sum","","","n")
+	gui.Form.gsForecast.SetColumnProperty("gvForecast","ReqDelivery","DisplayCustomDatetime","d")
+	
+	gui.Form.gsForecast.MainView("gvForecast")
+	
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+        F.Intrinsic.Control.CallSub("Unload")
+F.Intrinsic.Control.EndTry
+Program.Sub.Format_gsForecast.End
+
+Program.Sub.Merge_Tables.Start
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+	v.Local.iCnt.Declare
+	v.Local.sFilter.Declare
+	v.Local.bNumeric.Declare
+	v.Local.iItemID.Declare
+	v.Local.sReturn.Declare
+	v.Local.sHold.Declare
+	v.Local.fTotal.Declare
+	v.Local.sDateOverdue.Declare
+	
+	f.Intrinsic.Control.If(v.DataTable.MergedTB.Exists)
+		f.Data.DataTable.Close("MergedTB")
+	f.Intrinsic.Control.EndIf
+	
+	'Create MergedTB (for 3rd grid) that has staring records from Commit file (CMT table)
+	f.Data.DataView.Create("CMT","CMTDV")
+	f.Data.DataView.ToDataTable("CMT","CMTDV","MergedTB",True)
+	f.Data.DataTable.AddColumn("MergedTB","NumFromForeCast","String")
+	f.Data.DataTable.AddColumn("MergedTB","Add","String")
+	f.Data.DataTable.AddColumn("MergedTB","KeyFigure","String")
+	f.Data.DataTable.AddColumn("MergedTB","GridNum","Long",0)
+	
+	'Compare and merge tables
+	
+	'Create ForeCastNonLTA
+	f.Data.DataView.Create("ForeCast","ForeCastDV",22,"Type = 'NON-LTA' and KeyFigure = 'PlannedLine' and Part <> '' and OrderID <> '' and ItemID <> '' and ReqDelivery <> #01/01/1900#","")
+	f.Intrinsic.Control.If(v.DataTable.ForeCastNonLTA.Exists)
+		f.Data.DataTable.Close("ForeCastNonLTA")
+	f.Intrinsic.Control.EndIf
+	f.Data.DataView.ToDataTable("ForeCast","ForeCastDV","ForeCastNonLTA",True)
+	
+	'Process Non-LTA:
+	f.Intrinsic.Control.If(v.DataTable.ForecastNonLTA.RowCount,>,0)
+		gui.Form.proBar3.Visible(True)
+		gui.Form.proBar3.Max(v.DataTable.ForecastNonLTA.RowCount)
+	f.Intrinsic.Control.EndIf
+	
+	f.Intrinsic.Control.For(v.Local.iCnt,0,v.DataTable.ForecastNonLTA.RowCount--,1)
+
+		gui.Form.proBar3.Value(v.Local.iCnt)
+		f.Intrinsic.Math.IsNumeric(v.DataTable.ForecastNonLTA(v.Local.iCnt).ItemID!FieldValString,v.Local.bNumeric)
+		
+		f.Intrinsic.Control.If(v.Local.bNumeric)
+			v.Local.iItemID.Set(v.DataTable.ForecastNonLTA(v.Local.iCnt).ItemID!FieldValString)
+			
+			f.Intrinsic.String.Build("OrderID = '{0}' and ItemID = '{1}' and Locn = '{2}' and Part = '{3}'",v.DataTable.ForeCastNonLTA(v.Local.iCnt).OrderID!FieldValString,v.Local.iItemID,v.DataTable.ForeCastNonLTA(v.Local.iCnt).Locn!FieldValString,v.DataTable.ForeCastNonLTA(v.Local.iCnt).Part!FieldValString,v.Local.sFilter)
+			f.Data.DataView.SetFilter("CMT","CMTDV",v.Local.sFilter)
+			
+			f.Intrinsic.Control.If(v.DataView.CMT!CMTDV.RowCount,=,0)
+				'Add Record to MergedTB
+				f.Data.DataTable.AddRow("MergedTB","NumFromForeCast",v.DataTable.ForeCastNonLTA(v.Local.iCnt).Num!FieldValString,"Type","NON-LTA","Part",v.DataTable.ForeCastNonLTA(v.Local.iCnt).Part!FieldValString,"OpenQty",v.DataTable.ForeCastNonLTA(v.Local.iCnt).TotalPeriod!FieldValString,"OrderID",v.DataTable.ForeCastNonLTA(v.Local.iCnt).OrderID!FieldValString,"ItemID",v.Local.iItemID,"Locn",v.DataTable.ForeCastNonLTA(v.Local.iCnt).Locn!FieldValString,"ReqDate",v.DataTable.ForeCastNonLTA(v.Local.iCnt).ReqDelivery!FieldValString,"Add","N","KeyFigure",v.DataTable.ForeCastNonLTA(v.Local.iCnt).KeyFigure!FieldValString)
+				'Set Color for the ForeCast Source Grid
+				f.Intrinsic.String.Build("Num = '{0}'",v.DataTable.ForecastNonLTA(v.Local.iCnt).Num!FieldValString,v.Local.sFilter)
+				f.Data.DataTable.Select("Forecast",v.Local.sFilter,v.Local.sReturn)
+				f.Intrinsic.Math.IsNumeric(v.Local.sReturn,v.Local.bNumeric)
+				f.Intrinsic.Control.If(v.Local.bNumeric)
+					f.Data.DataTable.SetValue("ForeCast",v.Local.sReturn,"Add","N")
+				f.Intrinsic.Control.EndIf												
+			f.Intrinsic.Control.EndIf		
+		f.Intrinsic.Control.EndIf
+		
+	f.Intrinsic.Control.Next(v.Local.iCnt)
+	gui.Form.proBar3.Visible(False)
+
+	'Create ForeCastLTA
+	f.Data.DataView.SetFilter("ForeCast","ForeCastDV","Type = 'LTA' and KeyFigure = 'PlannedLine' and Part <> '' and OrderID <> '' and ItemID <> '' and ReqDelivery <> #01/01/1900#")
+	f.Intrinsic.Control.If(v.DataTable.ForeCastLTA.Exists)
+		f.Data.DataTable.Close("ForeCastLTA")
+	f.Intrinsic.Control.EndIf
+	f.Data.DataView.ToDataTable("ForeCast","ForeCastDV","ForeCastLTA",True)
+
+	'Merge LTA:
+	f.Intrinsic.Control.If(v.DataTable.ForecastLTA.RowCount,>,0)
+		gui.Form.proBar4.Visible(True)
+		gui.Form.proBar4.Max(v.DataTable.ForecastLTA.RowCount)
+	f.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.For(v.Local.iCnt,0,v.DataTable.ForecastLTA.RowCount--,1)
+		gui.Form.proBar4.Value(v.Local.iCnt)
+		F.Intrinsic.String.Split(v.DataTable.ForecastLTA(v.Local.iCnt).ItemID!FieldValString,"/",V.Local.sHold)
+		f.Intrinsic.Math.IsNumeric(v.Local.sHold(0).Trim,v.Local.bNumeric)
+		f.Intrinsic.Control.If(v.Local.bNumeric)
+			v.Local.iItemID.Set(v.Local.sHold(0).Trim)
+			f.Intrinsic.String.Build("OrderID = '{0}' and ItemID = '{1}' and Locn = '{2}' and Part = '{3}' and ReqDate = '{4}'",v.DataTable.ForecastLTA(v.Local.iCnt).OrderID!FieldValString,v.Local.iItemID,v.DataTable.ForecastLTA(v.Local.iCnt).Locn!FieldValString,v.DataTable.ForecastLTA(v.Local.iCnt).Part!FieldValString,v.DataTable.ForecastLTA(v.Local.iCnt).ReqDelivery!FieldValString,v.Local.sFilter)
+			
+			f.Data.DataView.SetFilter("CMT","CMTDV",v.Local.sFilter)
+			
+			f.Intrinsic.Control.If(v.DataView.CMT!CMTDV.RowCount,=,0)
+				'Add Record to MergedTB
+				f.Data.DataTable.AddRow("MergedTB","NumFromForeCast",v.DataTable.ForecastLTA(v.Local.iCnt).Num!FieldValString,"Type","LTA","Part",v.DataTable.ForecastLTA(v.Local.iCnt).Part!FieldValString,"OpenQty",v.DataTable.ForecastLTA(v.Local.iCnt).TotalPeriod!FieldValString,"OrderID",v.DataTable.ForecastLTA(v.Local.iCnt).OrderID!FieldValString,"ItemID",v.Local.iItemID,"Locn",v.DataTable.ForecastLTA(v.Local.iCnt).Locn!FieldValString,"ReqDate",v.DataTable.ForecastLTA(v.Local.iCnt).ReqDelivery!FieldValString,"Add","L","KeyFigure",v.DataTable.ForeCastLTA(v.Local.iCnt).KeyFigure!FieldValString)
+				'Set Color for the ForeCast Source Grid
+				f.Intrinsic.String.Build("Num = '{0}'",v.DataTable.ForecastLTA(v.Local.iCnt).Num!FieldValString,v.Local.sFilter)
+				f.Data.DataTable.Select("Forecast",v.Local.sFilter,v.Local.sReturn)
+				f.Intrinsic.Math.IsNumeric(v.Local.sReturn,v.Local.bNumeric)
+				f.Intrinsic.Control.If(v.Local.bNumeric)
+					f.Data.DataTable.SetValue("ForeCast",v.Local.sReturn,"Add","L")
+				f.Intrinsic.Control.EndIf
+				
+			f.Intrinsic.Control.EndIf		
+		f.Intrinsic.Control.EndIf
+		
+	f.Intrinsic.Control.Next(v.Local.iCnt)
+	gui.Form.proBar4.Visible(False)	
+	
+	'Set Series for Sorting the original rows added
+	f.Data.DataTable.SetSeries("MergedTB","GridNum",1,1)
+	
+	f.Intrinsic.Control.CallSub("Format_gsMerged")
+	
+	'UploadTB: This table will be from MergedTB that combine the OVERDUE line into 1 line
+	f.Data.DataView.Create("MergedTB","MergedDV",22,"IsNull(Priority,'') <> 'OVERDUE'","")
+	f.Intrinsic.Control.If(v.DataTable.UploadTB.Exists)
+		f.Data.DataTable.Close("UploadTB")
+	f.Intrinsic.Control.EndIf
+	
+	F.Data.DataView.ToDataTable("MergedTB","MergedDV","UploadTB",True)
+	f.Data.DataView.SetFilter("MergedTB","MergedDV","Priority = 'OVERDUE'")
+	f.Intrinsic.Control.If(v.DataTable.DistinctOverdue.Exists)
+		f.Data.DataTable.Close("DistinctOverdue")
+	f.Intrinsic.Control.EndIf
+	f.Data.DataView.ToDataTableDistinct("MergedTB","MergedDV","DistinctOverdue","Type*!*Part*!*OrderID*!*ItemID*!*Locn",True)
+	f.Intrinsic.Control.If(v.DataTable.DistinctOverdue.RowCount,>,0)
+		gui.Form.proBar6.Max(v.DataTable.DistinctOverdue.RowCount)
+		gui.Form.proBar6.Visible(True)
+	f.Intrinsic.Control.EndIf
+	
+	'Looping to combine OVERDUE lines
+	f.Intrinsic.Control.For(v.Local.iCnt,0,v.DataTable.DistinctOverdue.RowCount--,1)
+	
+		gui.Form.proBar6.Value(v.Local.iCnt)
+		f.Intrinsic.String.Build("Priority = 'OVERDUE' and Part = '{0}' and OrderID = '{1}' and ItemID = '{2}' and Locn = '{3}' and Type = '{4}'",v.DataTable.DistinctOverdue(v.Local.iCnt).Part!FieldValString,v.DataTable.DistinctOverdue(v.Local.iCnt).OrderID!FieldValString,v.DataTable.DistinctOverdue(v.Local.iCnt).ItemID!FieldValString,v.DataTable.DistinctOverdue(v.Local.iCnt).Locn!FieldValString,v.DataTable.DistinctOverdue(v.Local.iCnt).Type!FieldValString,v.Local.sFilter)
+		f.Data.DataTable.Compute("MergedTB","Sum([OpenQty])",v.Local.sFilter,v.Local.sReturn)
+		f.Intrinsic.Math.IsNumeric(v.Local.sReturn,v.Local.bNumeric)
+		f.Intrinsic.Control.If(v.Local.bNumeric)
+			v.Local.fTotal.Set(v.Local.sReturn)
+			f.Data.DataView.SetFilter("MergedTB","MergedDV",v.Local.sFilter)
+			f.Data.DataView.SetSort("MergedTB","MergedDV","ReqDate Asc")
+			v.Local.sDateOverdue.Set(v.DataView.MergedTB!MergedDV(0).ReqDate!FieldValString)
+			f.Data.DataTable.AddRow("UploadTB","Num",v.DataView.MergedTB!MergedDV(0).Num!FieldValString,"Type",v.DataView.MergedTB!MergedDV(0).Type!FieldValString,"Priority","OVERDUE","Part",v.DataView.MergedTB!MergedDV(0).Part!FieldValString,"OpenQty",v.Local.fTotal,"OrderID",v.DataView.MergedTB!MergedDV(0).OrderID!FieldValString,"ItemID",v.DataView.MergedTB!MergedDV(0).ItemID!FieldValString,"Locn",v.DataView.MergedTB!MergedDV(0).Locn!FieldValString,"ReqDate",v.Local.sDateOverdue)
+		f.Intrinsic.Control.EndIf
+		
+	f.Intrinsic.Control.Next(v.Local.iCnt)
+	gui.Form.proBar6.Visible(False)
+	
+	f.Data.DataTable.AddColumn("UploadTB","FileHeader","Long",v.Args.sCommitFileHeader)
+	'Set series gridNum
+	f.Data.DataTable.SetSeries("UpLoadTB","GridNum",1,1)	
+	
+	f.Intrinsic.Control.CallSub("Format_gsUpload")
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+        F.Intrinsic.Control.CallSub("Unload")
+F.Intrinsic.Control.EndTry
+Program.Sub.Merge_Tables.End
+
+Program.Sub.Format_gsMerged.Start
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+
+	gui.Form.gsMerged.AddGridviewFromDatatable("gvMerged","MergedTB")
+
+	gui.Form.gsForecast.AddStyleFormatCondition("gvForecast","Add","tagForeCastLTAadded","equal","L")
+	gui.Form.gsForecast.SetStyleFormatConditionProperty("gvForecast","Add","tagForeCastLTAadded","backcolor","Lightblue")
+	
+	gui.Form.gsForecast.AddStyleFormatCondition("gvForecast","Add","tagForeCastNonLTAadded","equal","N")
+	gui.Form.gsForecast.SetStyleFormatConditionProperty("gvForecast","Add","tagForeCastNonLTAadded","backcolor","LightGreen")
+	
+	gui.Form.gsMerged.AddStyleFormatCondition("gvMerged","Add","tagMergedLTAadded","equal","L")
+	gui.Form.gsMerged.SetStyleFormatConditionProperty("gvMerged","Add","tagMergedLTAadded","backcolor","Lightblue")
+	
+	gui.Form.gsMerged.AddStyleFormatCondition("gvMerged","Add","tagMergedNONLTAadded","equal","N")
+	gui.Form.gsMerged.SetStyleFormatConditionProperty("gvMerged","Add","tagMergedNONLTAadded","backcolor","LightGreen")	
+	
+	Gui.Form.gsMerged.SetGridViewProperty("gvMerged","AllowSort",True)
+	Gui.Form.gsMerged.SetGridViewProperty("gvMerged","AllowFilter",True)
+	Gui.Form.gsMerged.SetGridViewProperty("gvMerged","OptionsFindAlwaysVisible",True)
+	Gui.Form.gsMerged.SetGridViewProperty("gvMerged","EnableAppearanceOddRow",False)
+	Gui.Form.gsMerged.SetGridViewProperty("gvMerged","OptionsViewShowAutoFilterRow",True)
+	Gui.Form.gsMerged.SetGridViewProperty("gvMerged","AllowColumnResizing",True)
+	Gui.Form.gsMerged.SetGridViewProperty("gvMerged","OptionsViewColumnAutoWidth",False)	
+	
+	gui.Form.gsMerged.SetColumnProperty("gvMerged","Part","VisibleIndex",3)
+	gui.Form.gsMerged.SetColumnProperty("gvMerged","Locn","VisibleIndex",4)
+	
+	gui.Form.gsMerged.SetColumnProperty("gvMerged","OrderPart","Visible",False)
+	gui.Form.gsMerged.SetColumnProperty("gvMerged","PartNoRev","Visible",False)
+	gui.Form.gsMerged.SetColumnProperty("gvMerged","PartNoRev17","Visible",False)
+	gui.Form.gsMerged.SetColumnProperty("gvMerged","Rev","Visible",False)	
+	
+	gui.Form.gsMerged.SetColumnProperty("gvMerged","Num","Width","35")
+	gui.Form.gsMerged.SetColumnProperty("gvMerged","Type","Width","50")
+	gui.Form.gsMerged.SetColumnProperty("gvMerged","Priority","Width","45")
+	gui.Form.gsMerged.SetColumnProperty("gvMerged","Part","Width","80")
+	gui.Form.gsMerged.SetColumnProperty("gvMerged","OpenQty","Width","85")
+	gui.Form.gsMerged.SetColumnProperty("gvMerged","ItemID","Width","45")
+	gui.Form.gsMerged.SetColumnProperty("gvMerged","SchLine","Width","35")
+	gui.Form.gsMerged.SetColumnProperty("gvMerged","Locn","Width","40")
+	
+	gui.Form.gsMerged.SetColumnProperty("gvMerged","OpenQty","CellHAlignment","far")
+	gui.Form.gsMerged.SetColumnProperty("gvMerged","OpenQty","HeaderHAlignment","far")
+	
+	gui.Form.gsMerged.SetColumnProperty("gvMerged","ItemID","CellHAlignment","far")
+	gui.Form.gsMerged.SetColumnProperty("gvMerged","ItemID","HeaderHAlignment","far")
+	
+	gui.Form.gsMerged.SetColumnProperty("gvMerged","OpenQty","DisplayCustomNumeric","###,###,###,###")	
+
+	gui.Form.gsMerged.AddSummaryItem("gvMerged","OpenQty","SumMergedOpenQty","Sum","","","n")
+	gui.Form.gsMerged.SetColumnProperty("gvMerged","ReqDate","DisplayCustomDatetime","d")
+	gui.Form.gsMerged.MainView("gvMerged")
+	
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+        F.Intrinsic.Control.CallSub("Unload")
+F.Intrinsic.Control.EndTry
+Program.Sub.Format_gsMerged.End
+
+Program.Sub.Format_gsUpload.Start
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+
+	gui.Form.gsUpload.AddGridviewFromDatatable("gvUpload","UploadTB")
+	
+	gui.Form.gsUpload.AddStyleFormatCondition("gvUpload","Add","tagUploadForeCastLTAadded","equal","L")
+	gui.Form.gsUpload.SetStyleFormatConditionProperty("gvUpload","Add","tagUploadForeCastLTAadded","backcolor","Lightblue")
+	
+	gui.Form.gsUpload.AddStyleFormatCondition("gvUpload","Add","tagUploadForeCastNonLTAadded","equal","N")
+	gui.Form.gsUpload.SetStyleFormatConditionProperty("gvUpload","Add","tagUploadForeCastNonLTAadded","backcolor","Green")
+		
+	Gui.Form.gsUpload.SetGridViewProperty("gvUpload","AllowSort",True)
+	Gui.Form.gsUpload.SetGridViewProperty("gvUpload","AllowFilter",True)
+	Gui.Form.gsUpload.SetGridViewProperty("gvUpload","OptionsFindAlwaysVisible",True)
+	Gui.Form.gsUpload.SetGridViewProperty("gvUpload","EnableAppearanceOddRow",False)
+	Gui.Form.gsUpload.SetGridViewProperty("gvUpload","OptionsViewShowAutoFilterRow",True)
+	Gui.Form.gsUpload.SetGridViewProperty("gvUpload","AllowColumnResizing",True)
+	Gui.Form.gsUpload.SetGridViewProperty("gvUpload","OptionsViewColumnAutoWidth",False)	
+	
+	gui.Form.gsUpload.SetColumnProperty("gvUpload","Part","VisibleIndex",3)
+	gui.Form.gsUpload.SetColumnProperty("gvUpload","Locn","VisibleIndex",4)
+	
+	gui.Form.gsUpload.SetColumnProperty("gvUpload","OrderPart","Visible",False)
+	gui.Form.gsUpload.SetColumnProperty("gvUpload","PartNoRev","Visible",False)
+	gui.Form.gsUpload.SetColumnProperty("gvUpload","PartNoRev17","Visible",False)
+	gui.Form.gsUpload.SetColumnProperty("gvUpload","Rev","Visible",False)	
+
+	gui.Form.gsUpload.SetColumnProperty("gvUpload","Num","Width","45")
+	gui.Form.gsUpload.SetColumnProperty("gvUpload","Type","Width","55")
+	gui.Form.gsUpload.SetColumnProperty("gvUpload","Priority","Width","65")
+	gui.Form.gsUpload.SetColumnProperty("gvUpload","Part","Width","100")
+	gui.Form.gsUpload.SetColumnProperty("gvUpload","OpenQty","Width","85")
+	gui.Form.gsUpload.SetColumnProperty("gvUpload","ItemID","Width","45")
+	gui.Form.gsUpload.SetColumnProperty("gvUpload","SchLine","Width","35")
+	gui.Form.gsUpload.SetColumnProperty("gvUpload","Locn","Width","40")
+	gui.Form.gsUpload.SetColumnProperty("gvUpload","FileHeader","Width","50")
+	
+	gui.Form.gsUpload.SetColumnProperty("gvUpload","GridNum","Caption","UploadGridNum")
+	
+	gui.Form.gsUpload.SetColumnProperty("gvUpload","OpenQty","CellHAlignment","far")
+	gui.Form.gsUpload.SetColumnProperty("gvUpload","OpenQty","HeaderHAlignment","far")
+	
+	gui.Form.gsUpload.SetColumnProperty("gvUpload","ItemID","CellHAlignment","far")
+	gui.Form.gsUpload.SetColumnProperty("gvUpload","ItemID","HeaderHAlignment","far")
+	
+	gui.Form.gsUpload.SetColumnProperty("gvUpload","OpenQty","DisplayCustomNumeric","###,###,###,###")	
+
+	gui.Form.gsUpload.AddSummaryItem("gvUpload","OpenQty","SumUploadOpenQty","Sum","","","n")
+	gui.Form.gsUpload.SetColumnProperty("gvUpload","ReqDate","DisplayCustomDatetime","d")
+	gui.Form.gsUpload.MainView("gvUpload")	
+
+
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+        F.Intrinsic.Control.CallSub("Unload")
+F.Intrinsic.Control.EndTry
+Program.Sub.Format_gsUpload.End
+
+Program.Sub.cmdCreateEA850_Click.Start
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+	v.Local.iCnt.Declare
+	v.Local.sContent.Declare
+	v.Local.sHold.Declare
+	v.Local.sLine.Declare
+	v.Local.iInner.Declare
+	v.Local.sFilter.Declare
+	v.Local.fhold.Declare
+	v.Local.dDate.Declare
+	v.Local.sFile.Declare
+	v.Local.iLineNumber.Declare
+	v.Local.sItemID.Declare
+	v.Local.sPONum.Declare
+	v.Local.iItemID.Declare
+	v.Local.dPromiseDate.Declare
+	v.Local.sYear.Declare
+	v.Local.sMonth.Declare
+	v.Local.sDay.Declare
+	v.Local.sTotal.Declare
+	v.Local.iHold.Declare
+	v.Local.bDate.Declare
+	
+	f.Intrinsic.Control.If(v.DataTable.UploadTB.Exists,=,False)		
+		f.Intrinsic.UI.Msgbox("Unload grid is empty","Attention")
+		f.Intrinsic.Control.ExitSub	
+	f.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.If(v.DataTable.UploadTB.RowCount,<=,0)
+		f.Intrinsic.UI.Msgbox("Unload grid is empty","Attention")
+		f.Intrinsic.Control.ExitSub			
+	f.Intrinsic.Control.EndIf
+	
+	gui.Progress..Show
+	'Split in 2 type LTA and NON-LTA, order by OrderID,ItemID,ReqDate
+	f.Intrinsic.Control.If(v.DataView.UploadTB!UploadDV.Exists)
+		f.Data.DataView.Close("UploadTB","UploadDV")
+	f.Intrinsic.Control.EndIf
+	f.Data.DataView.Create("UploadTB","UploadDV",22,"Type = 'NON-LTA'","OrderID asc,ItemID asc,ReqDate asc")
+	
+	'1/Non LTA
+	F.Intrinsic.Control.If(V.DataTable.NONLTA.Exists)
+		f.Data.Datatable.Close("NONLTA")
+	F.Intrinsic.Control.EndIf
+	f.Data.DataView.ToDataTable("UploadTB","UploadDV","NONLTA",True)
+	
+	'Get Distinct OrderID and push to Table Distinct ORDERID
+	f.Data.DataView.Create("NONLTA","NONLTADV")
+	f.Intrinsic.Control.If(v.DataTable.DistinctNONLTAOrd.Exists)
+		f.Data.DataTable.Close("DistinctNONLTAOrd")
+	f.Intrinsic.Control.EndIf
+	f.Data.DataView.ToDataTableDistinct("NONLTA","NONLTADV","DistinctNONLTAOrd","OrderID*!*Locn",True)	
+	
+	gui.Progress.lblProcess.Caption("Processing NON LTA orders...")
+	f.Intrinsic.Control.If(v.DataTable.DistinctNONLTAOrd.RowCount,>,0)
+		gui.Progress.ProMain.Max(v.DataTable.DistinctNONLTAOrd.RowCount)
+	f.Intrinsic.Control.EndIf
+	
+	v.Local.sContent.Set("#StartingPoint#")	
+	'Loop through table DistinctNONLTAOrd, Distinct ORDERID, each one, filter the Source table order by itemID, ReqDate => add records to EA850	
+	f.Intrinsic.Control.For(v.Local.iCnt,0,v.DataTable.DistinctNONLTAOrd.RowCount--,1)
+
+		gui.Progress.ProMain.Value(v.Local.iCnt)
+		'Create Header H Line:
+		'Buyer ID
+		F.Intrinsic.String.RPad("UTAS"," ",35,V.Local.sLine)
+		'PO-Number
+		F.Intrinsic.String.RPad(v.DataTable.DistinctNONLTAOrd(v.Local.iCnt).OrderID!FieldValString," ",15,V.Local.sHold)
+		f.Intrinsic.String.Build("{0}{1}",v.Local.sLine,v.Local.sHold,v.Local.sLine)
+		'Line number is 000
+		f.Intrinsic.String.Build("{0}000",v.Local.sLine,v.Local.sHold,v.Local.sLine)
+		
+		'850-H-SHIP-TO-CODE
+		f.Intrinsic.String.RPad(v.Local.sLine," ",70,v.Local.sLine)
+		f.Intrinsic.String.Build("{0}{1}",v.Local.sLine,"    ",v.Local.sLine)
+		
+		'H-Tranasction = 830
+		f.Intrinsic.String.RPad(v.Local.sLine," ",139,v.Local.sLine)
+		f.Intrinsic.String.Build("{0}830",v.Local.sLine,v.Local.sLine)
+		'850-H-TRADING-PARTNER-CD = UTA
+		f.Intrinsic.String.Build("{0}UTA",v.Local.sLine,v.Local.sLine)
+		'850-H-Record-Type
+		f.Intrinsic.String.RPad(v.Local.sLine," ",510,v.Local.sLine)
+		f.Intrinsic.String.Build("{0}H",v.Local.sLine,v.Local.sLine)
+		'H-Conversion-flag
+		f.Intrinsic.String.Build("{0} ",v.Local.sLine,v.Local.sLine)
+		
+		'add header line to content
+		f.Intrinsic.String.Build("{0}{1}{2}",v.Local.sContent,v.Ambient.NewLine,v.Local.sLine,v.Local.sContent)
+
+		'Create Line records
+		f.Intrinsic.String.Build("OrderID = '{0}'",v.DataTable.DistinctNONLTAOrd(v.Local.iCnt).OrderID!FieldValString,v.Local.sFilter)
+		f.Data.DataView.SetFilter("NONLTA","NONLTADV",v.Local.sFilter)
+		f.Data.DataView.SetSort("NONLTA","NONLTADV","OrderID asc,ItemID asc,ReqDate asc")
+		f.Intrinsic.Control.If(v.DataView.NONLTA!NONLTADV.RowCount,>,0)
+			gui.Progress.proSub.Max(v.DataView.NONLTA!NONLTADV.RowCount)
+		f.Intrinsic.Control.EndIf
+		
+		f.Intrinsic.Control.For(v.Local.iInner,0,v.DataView.NONLTA!NONLTADV.RowCount--,1)
+
+			gui.Progress.proSub.Value(v.Local.iInner)
+			'Buyer ID
+			F.Intrinsic.String.RPad("UTAS"," ",35,V.Local.sLine)
+			'PO-Number
+			F.Intrinsic.String.RPad(v.DataTable.DistinctNONLTAOrd(v.Local.iCnt).OrderID!FieldValString," ",15,V.Local.sHold)
+			f.Intrinsic.String.Build("{0}{1}",v.Local.sLine,v.Local.sHold,v.Local.sLine)
+			'Line-Number
+			f.Intrinsic.Math.Add(v.Local.iInner,1,v.Local.iLineNumber)
+			f.Intrinsic.String.LPad(v.Local.iLineNumber,"0",3,v.Local.sHold)
+			f.Intrinsic.String.Build("{0}{1}",v.Local.sLine,v.Local.sHold,v.Local.sLine)
+			'Buyer Part number
+			f.Intrinsic.String.RPad(v.Local.sLine," ",54,v.Local.sLine)
+			f.Intrinsic.String.RPad(v.DataView.NONLTA!NONLTADV(v.Local.iInner).Part!FieldValString," ",20,v.Local.sHold)
+			f.Intrinsic.String.Build("{0}{1}",v.Local.sLine,v.Local.sHold,v.Local.sLine)
+			'Order Qty
+			f.Intrinsic.String.Format(v.DataView.NONLTA!NONLTADV(v.Local.iInner).OpenQty!FieldValString,"#######0.0000",v.Local.sHold)
+			f.Intrinsic.String.Replace(v.Local.sHold,".","",v.Local.sHold)
+			f.Intrinsic.String.lPad(v.Local.sHold,"0",12,v.Local.sHold)
+			f.Intrinsic.String.RPad(v.Local.sLine," ",76,v.Local.sLine)
+			f.Intrinsic.String.Build("{0}{1}",v.Local.sLine,v.Local.sHold,v.Local.sLine)
+			
+			'850-L-PO-LINE-NUM-
+			f.Intrinsic.String.RPad(v.Local.sLine," ",225,v.Local.sLine)			
+			f.Intrinsic.String.Left(v.DataView.NONLTA!NONLTADV(v.Local.iInner).ItemID!FieldValTrim,3,v.Local.sHold)
+			f.Intrinsic.Control.If(v.Local.sHold.Right1,=,"0")
+				f.Intrinsic.Math.Div(v.Local.sHold,10,v.Local.iHold)
+			f.Intrinsic.Control.Else
+				v.Local.iHold.Set(v.Local.sHold)				
+			f.Intrinsic.Control.EndIf
+			
+			f.Intrinsic.String.LPad(v.Local.iHold,"0",3,v.Local.sHold)
+			f.Intrinsic.String.Build("{0}{1}",v.Local.sLine,v.Local.sHold,v.Local.sLine)			
+			
+			'Order Type Firm/planned
+			f.Intrinsic.String.RPad(v.Local.sLine," ",274,v.Local.sLine)
+			'f.Intrinsic.Control.If(v.DataView.NONLTA!NONLTADV(v.Local.iInner).KeyFigure!FieldValTrim,=,"PlannedLine")
+			'	v.Local.sHold.Set("P")
+			'f.Intrinsic.Control.Else
+			'	v.Local.sHold.Set("F")
+			'f.Intrinsic.Control.EndIf
+			v.Local.sHold.Set("F")
+			f.Intrinsic.String.Build("{0}{1}",v.Local.sLine,v.Local.sHold,v.Local.sLine)
+			
+			'User 1
+			f.Intrinsic.String.RPad(v.Local.sLine," ",354,v.Local.sLine)
+			f.Intrinsic.String.Build("{0}{1}",v.Local.sLine,v.DataView.NONLTA!NONLTADV(v.Local.iInner).ItemID!FieldValString,v.Local.sLine)	
+			
+			'User 2
+			f.Intrinsic.String.RPad(v.Local.sLine," ",384,v.Local.sLine)
+			f.Intrinsic.Control.If(v.DataView.NONLTA!NONLTADV(v.Local.iInner).Priority!FieldValTrim,<>,"")
+				v.Local.sHold.Set(v.DataView.NONLTA!NONLTADV(v.Local.iInner).Priority!FieldValTrim)		
+			f.Intrinsic.Control.Elseif(v.DataView.NONLTA!NONLTADV(v.Local.iInner).KeyFigure!FieldValTrim,=,"FirmLine")
+				v.Local.sHold.Set("Firm")
+			f.Intrinsic.Control.ElseIf(v.DataView.NONLTA!NONLTADV(v.Local.iInner).KeyFigure!FieldValTrim,=,"PlannedLine")
+				v.Local.sHold.Set("Planned")
+			f.Intrinsic.Control.ElseIf(v.DataView.NONLTA!NONLTADV(v.Local.iInner).Priority!FieldValTrim,=,"")
+				v.Local.sHold.Set("Firm")
+			f.Intrinsic.Control.Else
+				v.Local.sHold.Set("")
+			f.Intrinsic.Control.EndIf
+			f.Intrinsic.String.Build("{0}{1}",v.Local.sLine,v.Local.sHold,v.Local.sLine)				
+			
+			'ItemPromiseDate
+			f.Intrinsic.String.RPad(v.Local.sLine," ",474,v.Local.sLine)
+			v.Local.dDate.Set(v.DataView.NONLTA!NONLTADV(v.Local.iInner).ReqDate!FieldValString)
+			f.Intrinsic.String.Build("{0}{1}",v.Local.sLine,v.Local.dDate.FormatYYYYMMDD,v.Local.sLine)	
+		
+			'Record Type and conversion
+			f.Intrinsic.String.RPad(v.Local.sLine," ",510,v.Local.sLine)
+			f.Intrinsic.String.Build("{0}1 ",v.Local.sLine,v.Local.sLine)		
+	
+			f.Intrinsic.String.Build("{0}{1}{2}",v.Local.sContent,v.Ambient.NewLine,v.Local.sLine,v.Local.sContent)	
+		f.Intrinsic.Control.Next(v.Local.iInner)
+		
+	f.Intrinsic.Control.Next(v.Local.iCnt)
+	
+	f.Intrinsic.String.Build("#StartingPoint#{0}",v.Ambient.NewLine,v.Local.sHold)
+	f.Intrinsic.String.Replace(v.Local.sContent,v.Local.sHold,"",v.Local.sContent)	
+	
+	gui.Progress.lblProcess.Caption("Processing LTA...")
+	'2/LTA
+	f.Data.DataView.SetFilter("UploadTB","UploadDV","Type = 'LTA'")
+	f.Data.DataView.SetSort("UploadTB","UploadDV","OrderID asc,ItemID asc,ReqDate asc")
+	F.Intrinsic.Control.If(V.DataTable.LTA.Exists)
+		f.Data.Datatable.Close("LTA")
+	F.Intrinsic.Control.EndIf
+	f.Data.DataView.ToDataTable("UploadTB","UploadDV","LTA",True)
+	
+	'Get Distinct OrderID and push to Table Distinct ORDERID
+	f.Data.DataView.Create("LTA","LTADV")
+	f.Intrinsic.Control.If(v.DataTable.DistinctLTAOrd.Exists)
+		f.Data.DataTable.Close("DistinctLTAOrd")
+	f.Intrinsic.Control.EndIf
+	'Per Jamie and Pat request on May 2020: distinct Part*!*OrderID*!*ItemID*!*Locn*!*ReqDate
+	f.Data.DataView.ToDataTableDistinct("LTA","LTADV","DistinctLTAOrd","OrderID*!*ItemID*!*Locn",True)	
+	
+	f.Intrinsic.Control.If(v.DataTable.DistinctLTAOrd.RowCount,>,0)
+		gui.Progress.ProMain.Max(v.DataTable.DistinctLTAOrd.RowCount)
+	f.Intrinsic.Control.EndIf
+	
+	'Loop through table DistinctLTAOrd, Distinct ORDERID, each one, filter the Source table order by itemID, ReqDate => add records to EA850	
+	f.Intrinsic.Control.For(v.Local.iCnt,0,v.DataTable.DistinctLTAOrd.RowCount--,1)
+
+		gui.Progress.ProMain.Value(v.Local.iCnt)
+		'Create Header H Line:
+		'Buyer ID
+		F.Intrinsic.String.RPad("UTAS"," ",35,V.Local.sLine)
+		'PO-Number
+		v.Local.iItemID.Set(v.DataTable.DistinctLTAOrd(v.Local.iCnt).ItemID!FieldValString)
+		f.Intrinsic.String.Build("{0}/{1}",v.DataTable.DistinctLTAOrd(v.Local.iCnt).OrderID!FieldValString,v.Local.iItemID,V.Local.sHold)
+		F.Intrinsic.String.RPad(v.Local.sHold," ",15,V.Local.sPONum)
+		f.Intrinsic.String.Build("{0}{1}",v.Local.sLine,v.Local.sPONum,v.Local.sLine)		
+		'Line number is 000
+		f.Intrinsic.String.Build("{0}000",v.Local.sLine,v.Local.sHold,v.Local.sLine)
+	
+		'850-H-SHIP-TO-CODE
+		f.Intrinsic.String.RPad(v.Local.sLine," ",70,v.Local.sLine)
+		f.Intrinsic.String.Build("{0}{1}",v.Local.sLine,"    ",v.Local.sLine)	
+	
+		'850-H-CHANGE-BY-DATE-YN
+		f.Intrinsic.String.RPad(v.Local.sLine," ",95,v.Local.sLine)
+		f.Intrinsic.String.Build("{0}Y",v.Local.sLine,v.Local.sLine)
+
+		'H-Tranasction = 830
+		f.Intrinsic.String.RPad(v.Local.sLine," ",139,v.Local.sLine)
+		f.Intrinsic.String.Build("{0}830",v.Local.sLine,v.Local.sLine)
+		'850-H-TRADING-PARTNER-CD = UTA
+		f.Intrinsic.String.Build("{0}UTA",v.Local.sLine,v.Local.sLine)
+		'850-H-Record-Type
+		f.Intrinsic.String.RPad(v.Local.sLine," ",510,v.Local.sLine)
+		f.Intrinsic.String.Build("{0}H",v.Local.sLine,v.Local.sLine)
+		'H-Conversion-flag
+		f.Intrinsic.String.Build("{0} ",v.Local.sLine,v.Local.sLine)
+		
+		'add header line to content
+		f.Intrinsic.String.Build("{0}{1}{2}",v.Local.sContent,v.Ambient.NewLine,v.Local.sLine,v.Local.sContent)
+
+		'Create order lines
+		'Get distinct "Part*!*OrderID*!*ItemID*!*Locn*!*ReqDate",
+		f.Intrinsic.Control.If(v.DataView.LTA!v1.Exists)
+			F.Data.DataView.Close("LTA","V1")
+		f.Intrinsic.Control.EndIf
+		f.Data.DataView.Create("LTA","v1")		
+		f.Intrinsic.String.Build("OrderID = '{0}' and ItemID = '{1}' and Locn = '{2}'",v.DataTable.DistinctLTAOrd(v.Local.iCnt).OrderID!FieldValString,v.DataTable.DistinctLTAOrd(v.Local.iCnt).ItemID!FieldValString,v.DataTable.DistinctLTAOrd(v.Local.iCnt).Locn!FieldValString,v.Local.sFilter)
+		f.Data.DataView.SetFilter("LTA","v1",v.Local.sFilter)
+		
+		f.Intrinsic.Control.If(v.DataTable.d1.Exists)
+			f.Data.DataTable.Close("d1")
+		f.Intrinsic.Control.EndIf		
+		f.Data.DataView.ToDataTableDistinct("LTA","v1","d1","Part*!*OrderID*!*ItemID*!*Locn*!*ReqDate",True)	
+
+		f.Intrinsic.Control.For(v.Local.iInner,0,v.DataTable.d1.RowCount--,1)	
+
+			'Create Line records
+			v.Local.sHold.Set(v.DataTable.d1(v.Local.iInner).ReqDate!FieldValString)
+			f.Intrinsic.Date.IsDate(v.Local.sHold.Trim,v.Local.bDate)
+			f.Intrinsic.Control.If(v.Local.bDate)
+				v.Local.dPromiseDate.Set(v.Local.sHold.Trim)
+				v.Local.sHold.Set(v.Local.dPromiseDate.FormatYYYYMMDD)
+				v.Local.sYear.Set(v.Local.sHold.left4)
+				f.Intrinsic.String.Mid(v.Local.sHold,5,2,v.Local.sMonth)
+				v.Local.sDay.Set(v.Local.sHold.Right2)
+				f.Intrinsic.String.Build("{0}/{1}/{2}",v.Local.sMonth,v.Local.sDay,v.Local.sYear,v.Local.sHold)			
+				f.Intrinsic.String.Build("Part = '{0}' and OrderID = '{1}' and ItemID = '{2}' and Locn = '{3}' and ReqDate = #{4}#",v.DataTable.d1(v.Local.iInner).Part!FieldValString,v.DataTable.d1(v.Local.iInner).OrderID!FieldValString,v.DataTable.d1(v.Local.iInner).ItemID!FieldValString,v.DataTable.d1(v.Local.iInner).Locn!FieldValString,v.Local.sHold,v.Local.sFilter)
+			f.Intrinsic.Control.Else
+				v.Local.sHold.Set("")
+				f.Intrinsic.String.Build("Part = '{0}' and OrderID = '{1}' and ItemID = '{2}' and Locn = '{3}' and ReqDate Is Null",v.DataTable.d1(v.Local.iInner).Part!FieldValString,v.DataTable.d1(v.Local.iInner).OrderID!FieldValString,v.DataTable.d1(v.Local.iInner).ItemID!FieldValString,v.DataTable.d1(v.Local.iInner).Locn!FieldValString,v.Local.sFilter)
+			f.Intrinsic.Control.EndIf			
+			
+			f.Data.DataView.SetFilter("LTA","LTADV",v.Local.sFilter)
+			f.Data.DataView.SetSort("LTA","LTADV","OrderID asc,ItemID asc,ReqDate asc")				
+
+			f.Intrinsic.Control.If(v.DataView.LTA!LTADV.RowCount,>,0)
+				gui.Progress.proSub.Max(v.DataView.LTA!LTADV.RowCount)			
+			f.Intrinsic.Control.EndIf
+		
+			'gui.Progress.proSub.Value(v.Local.iInner)
+			'Buyer ID
+			F.Intrinsic.String.RPad("UTAS"," ",35,V.Local.sLine)
+			'PO-Number
+			f.Intrinsic.String.Build("{0}{1}",v.Local.sLine,v.Local.sPONum,v.Local.sLine)	
+
+			'Line-Number
+			f.Intrinsic.Math.Add(v.Local.iInner,1,v.Local.iLineNumber)
+			f.Intrinsic.String.LPad(v.Local.iLineNumber,"0",3,v.Local.sHold)
+			f.Intrinsic.String.Build("{0}{1}",v.Local.sLine,v.Local.sHold,v.Local.sLine)
+			'Buyer Part number
+			f.Intrinsic.String.RPad(v.Local.sLine," ",54,v.Local.sLine)
+			f.Intrinsic.String.RPad(v.DataView.LTA!LTADV(0).Part!FieldValString," ",20,v.Local.sHold)
+			f.Intrinsic.String.Build("{0}{1}",v.Local.sLine,v.Local.sHold,v.Local.sLine)
+			'Order Qty
+			''''''''''''''''''''''''CALCULATE SUM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			F.Data.DataTable.Compute("LTA","Sum([OpenQty])",v.Local.sFilter,v.Local.sTotal)
+			f.Intrinsic.String.Format(v.Local.sTotal,"#######0.0000",v.Local.sHold)
+			'f.Intrinsic.String.Format(v.DataView.LTA!LTADV(0).OpenQty!FieldValString,"#######0.0000",v.Local.sHold)
+			f.Intrinsic.String.Replace(v.Local.sHold,".","",v.Local.sHold)
+			f.Intrinsic.String.lPad(v.Local.sHold,"0",12,v.Local.sHold)
+			f.Intrinsic.String.RPad(v.Local.sLine," ",76,v.Local.sLine)
+			f.Intrinsic.String.Build("{0}{1}",v.Local.sLine,v.Local.sHold,v.Local.sLine)
+				
+			'850-L-PO-LINE-NUM
+			f.Intrinsic.String.RPad(v.Local.sLine," ",225,v.Local.sLine)			
+			f.Intrinsic.Math.Div(v.DataView.LTA!LTADV(0).ItemID!FieldValString,10,v.Local.sItemID)
+			f.Intrinsic.String.LPad(v.Local.sItemID,"0",3,v.Local.sItemID)
+			'No longer needed for LTA per Jamie
+			'f.Intrinsic.String.Build("{0}{1}",v.Local.sLine,v.Local.sItemID,v.Local.sLine)			
+			
+			'Order Type Firm/planned
+			f.Intrinsic.String.RPad(v.Local.sLine," ",274,v.Local.sLine)
+			f.Intrinsic.Control.If(v.DataView.LTA!LTADV(0).KeyFigure!FieldValTrim,=,"PlannedLine")
+				v.Local.sHold.Set("P")
+			f.Intrinsic.Control.Else
+				v.Local.sHold.Set("F")
+			f.Intrinsic.Control.EndIf
+			f.Intrinsic.String.Build("{0}{1}",v.Local.sLine,"F",v.Local.sLine)
+			
+			'User 1
+			f.Intrinsic.String.RPad(v.Local.sLine," ",354,v.Local.sLine)
+			'No longer needed for LTA per Jamie
+			'f.Intrinsic.String.Build("{0}{1}",v.Local.sLine,v.DataView.LTA!LTADV(0).ItemID!FieldValString,v.Local.sLine)	
+			
+			'User 2
+			f.Intrinsic.String.RPad(v.Local.sLine," ",384,v.Local.sLine)
+			f.Intrinsic.Control.If(v.DataView.LTA!LTADV(0).Priority!FieldValTrim,<>,"")
+				v.Local.sHold.Set(v.DataView.LTA!LTADV(0).Priority!FieldValTrim)		
+			f.Intrinsic.Control.Elseif(v.DataView.LTA!LTADV(0).KeyFigure!FieldValTrim,=,"FirmLine")
+				v.Local.sHold.Set("Firm")
+			f.Intrinsic.Control.ElseIf(v.DataView.LTA!LTADV(0).KeyFigure!FieldValTrim,=,"PlannedLine")
+				v.Local.sHold.Set("Planned")
+			f.Intrinsic.Control.ElseIf(v.DataView.LTA!LTADV(0).Priority!FieldValTrim,=,"")
+				v.Local.sHold.Set("Firm")
+			f.Intrinsic.Control.Else
+				v.Local.sHold.Set("")
+			f.Intrinsic.Control.EndIf
+			f.Intrinsic.String.Build("{0}{1}",v.Local.sLine,v.Local.sHold,v.Local.sLine)				
+			
+			'ItemPromiseDate
+			f.Intrinsic.String.RPad(v.Local.sLine," ",474,v.Local.sLine)
+			v.Local.dDate.Set(v.DataView.LTA!LTADV(0).ReqDate!FieldValString)
+			f.Intrinsic.String.Build("{0}{1}",v.Local.sLine,v.Local.dDate.FormatYYYYMMDD,v.Local.sLine)	
+		
+			'Record Type and conversion
+			f.Intrinsic.String.RPad(v.Local.sLine," ",510,v.Local.sLine)
+			f.Intrinsic.String.Build("{0}1 ",v.Local.sLine,v.Local.sLine)					
+	
+			'add line to content
+			f.Intrinsic.String.Build("{0}{1}{2}",v.Local.sContent,v.Ambient.NewLine,v.Local.sLine,v.Local.sContent)	
+		f.Intrinsic.Control.Next(v.Local.iInner)
+		
+	f.Intrinsic.Control.Next(v.Local.iCnt)	
+	
+	f.Intrinsic.String.Build("{0}\Custom\5631\{1}\EA850_{2}_{3}.txt",v.Caller.GlobalDir,v.Caller.CompanyCode,v.Ambient.Date.FormatYYYYMMDD,v.Ambient.Now.FormatHHNNSS,v.Local.sFile)
+	f.Intrinsic.File.String2File(v.Local.sfile,v.Local.sContent)
+	gui.Progress..Visible(False)
+	f.Intrinsic.String.Build("Created file {0}",v.Local.sFile,v.Local.sHold)
+	f.Intrinsic.UI.Msgbox(v.Local.sHold)
+	
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.iCnt,"ICNT")
+    F.Intrinsic.UI.Msgbox(V.Local.iInner,"INNER")
+        F.Intrinsic.Control.CallSub("Unload")
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdCreateEA850_Click.End
+
+Program.Sub.cmdExport_Click.Start
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+	
+	V.Local.sFileExport.Declare
+	V.Local.bExcel.Declare
+	V.Local.bFileLocked.Declare
+	V.Local.sMsg.Declare
+
+	F.Automation.MSExcel.CheckPresence(V.Local.bExcel)
+
+	F.Intrinsic.Control.If(V.Local.bExcel)
+		'Commit
+		F.Intrinsic.String.Build("{0}\Commit_{1}.xlsx",V.Caller.LocalGssTempDir,v.Ambient.Now.FormatMMDDYYYYHhNnSs,V.Local.sFileExport)
+		F.Intrinsic.File.IsFileLocked(V.Local.sFileExport,V.Local.bFileLocked)
+		F.Intrinsic.Control.If(V.Local.bFileLocked)
+			F.Intrinsic.String.Build("File is already open. Please close and export again.{0}File: {1}",V.Ambient.NewLine,V.Local.sFileExport,V.Local.sMsg)
+			F.Intrinsic.UI.Msgbox(V.Local.sMsg,"File In Use")
+		F.Intrinsic.Control.Else
+			Gui.Form.gsCommit.Export(V.Local.sFileExport,"xlsx")
+			F.Intrinsic.Task.ShellExec(0,"",V.Local.sFileExport,"","",1)
+		F.Intrinsic.Control.EndIf
+		'Forecast
+		F.Intrinsic.String.Build("{0}\Forecast_{1}.xlsx",V.Caller.LocalGssTempDir,v.Ambient.Now.FormatMMDDYYYYHhNnSs,V.Local.sFileExport)
+		F.Intrinsic.File.IsFileLocked(V.Local.sFileExport,V.Local.bFileLocked)
+		F.Intrinsic.Control.If(V.Local.bFileLocked)
+			F.Intrinsic.String.Build("File is already open. Please close and export again.{0}File: {1}",V.Ambient.NewLine,V.Local.sFileExport,V.Local.sMsg)
+			F.Intrinsic.UI.Msgbox(V.Local.sMsg,"File In Use")
+		F.Intrinsic.Control.Else
+			Gui.Form.gsForecast.Export(V.Local.sFileExport,"xlsx")
+			F.Intrinsic.Task.ShellExec(0,"",V.Local.sFileExport,"","",1)
+		F.Intrinsic.Control.EndIf		
+		'MergedTB
+		F.Intrinsic.String.Build("{0}\Merged_{1}.xlsx",V.Caller.LocalGssTempDir,v.Ambient.Now.FormatMMDDYYYYHhNnSs,V.Local.sFileExport)
+		F.Intrinsic.File.IsFileLocked(V.Local.sFileExport,V.Local.bFileLocked)
+		F.Intrinsic.Control.If(V.Local.bFileLocked)
+			F.Intrinsic.String.Build("File is already open. Please close and export again.{0}File: {1}",V.Ambient.NewLine,V.Local.sFileExport,V.Local.sMsg)
+			F.Intrinsic.UI.Msgbox(V.Local.sMsg,"File In Use")
+		F.Intrinsic.Control.Else
+			Gui.Form.gsMerged.Export(V.Local.sFileExport,"xlsx")
+			F.Intrinsic.Task.ShellExec(0,"",V.Local.sFileExport,"","",1)
+		F.Intrinsic.Control.EndIf
+'		'UploadTB
+		F.Intrinsic.String.Build("{0}\Upload_{1}.xlsx",V.Caller.LocalGssTempDir,v.Ambient.Now.FormatMMDDYYYYHhNnSs,V.Local.sFileExport)
+		F.Intrinsic.File.IsFileLocked(V.Local.sFileExport,V.Local.bFileLocked)
+		F.Intrinsic.Control.If(V.Local.bFileLocked)
+			F.Intrinsic.String.Build("File is already open. Please close and export again.{0}File: {1}",V.Ambient.NewLine,V.Local.sFileExport,V.Local.sMsg)
+			F.Intrinsic.UI.Msgbox(V.Local.sMsg,"File In Use")
+		F.Intrinsic.Control.Else
+			Gui.Form.gsUpload.Export(V.Local.sFileExport,"xlsx")
+			F.Intrinsic.Task.ShellExec(0,"",V.Local.sFileExport,"","",1)
+		F.Intrinsic.Control.EndIf	
+		
+	F.Intrinsic.Control.Else
+		F.Intrinsic.String.Build("{0}\Commit.csv",V.Caller.LocalGssTempDir,v.Ambient.Now.FormatMMDDYYYYHhNnSs,V.Local.sFileExport)
+		F.Intrinsic.File.IsFileLocked(V.Local.sFileExport,V.Local.bFileLocked)
+		F.Intrinsic.Control.If(V.Local.bFileLocked)
+			F.Intrinsic.String.Build("File is already open. Please close and export again.{0}File: {1}",V.Ambient.NewLine,V.Local.sFileExport,V.Local.sMsg)
+			F.Intrinsic.UI.Msgbox(V.Local.sMsg,"File In Use")
+		F.Intrinsic.Control.Else
+			Gui.Form.gsCommit.Export(V.Local.sFileExport,"csv")
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.Task.ShellExec(0,"",V.Local.sFileExport,"","",1)
+		
+		F.Intrinsic.String.Build("{0}\Forecast.csv",V.Caller.LocalGssTempDir,v.Ambient.Now.FormatMMDDYYYYHhNnSs,V.Local.sFileExport)
+		F.Intrinsic.File.IsFileLocked(V.Local.sFileExport,V.Local.bFileLocked)
+		F.Intrinsic.Control.If(V.Local.bFileLocked)
+			F.Intrinsic.String.Build("File is already open. Please close and export again.{0}File: {1}",V.Ambient.NewLine,V.Local.sFileExport,V.Local.sMsg)
+			F.Intrinsic.UI.Msgbox(V.Local.sMsg,"File In Use")
+		F.Intrinsic.Control.Else
+			Gui.Form.gsForecast.Export(V.Local.sFileExport,"csv")
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.Task.ShellExec(0,"",V.Local.sFileExport,"","",1)
+		
+		F.Intrinsic.String.Build("{0}\Merged.csv",V.Caller.LocalGssTempDir,v.Ambient.Now.FormatMMDDYYYYHhNnSs,V.Local.sFileExport)
+		F.Intrinsic.File.IsFileLocked(V.Local.sFileExport,V.Local.bFileLocked)
+		F.Intrinsic.Control.If(V.Local.bFileLocked)
+			F.Intrinsic.String.Build("File is already open. Please close and export again.{0}File: {1}",V.Ambient.NewLine,V.Local.sFileExport,V.Local.sMsg)
+			F.Intrinsic.UI.Msgbox(V.Local.sMsg,"File In Use")
+		F.Intrinsic.Control.Else
+			Gui.Form.gsMerged.Export(V.Local.sFileExport,"csv")
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.Task.ShellExec(0,"",V.Local.sFileExport,"","",1)
+		
+		F.Intrinsic.String.Build("{0}\Upload.csv",V.Caller.LocalGssTempDir,v.Ambient.Now.FormatMMDDYYYYHhNnSs,V.Local.sFileExport)
+		F.Intrinsic.File.IsFileLocked(V.Local.sFileExport,V.Local.bFileLocked)
+		F.Intrinsic.Control.If(V.Local.bFileLocked)
+			F.Intrinsic.String.Build("File is already open. Please close and export again.{0}File: {1}",V.Ambient.NewLine,V.Local.sFileExport,V.Local.sMsg)
+			F.Intrinsic.UI.Msgbox(V.Local.sMsg,"File In Use")
+		F.Intrinsic.Control.Else
+			Gui.Form.gsUpload.Export(V.Local.sFileExport,"csv")
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.Task.ShellExec(0,"",V.Local.sFileExport,"","",1)		
+	F.Intrinsic.Control.EndIf
+	
+	
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+        F.Intrinsic.Control.CallSub("Unload")
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdExport_Click.End
+
+Program.Sub.Progress_UnLoad.Start
+gui.Progress..Visible(False)
+Program.Sub.Progress_UnLoad.End
+
+Program.Sub.cmdCompare_Click.Start
+'FileHeader@!@FileHeader*!*Num@!@Num*!*Type@!@Type*!*Priority@!@Priority*!*Part@!@Part*!*OpenQty@!@OpenQty*!*OrderID@!@OrderID*!*ItemID@!@ItemID*!*Locn@!@Locn*!*ReqDate@!@ReqDate*!*NumFromForecast@!@NumFromForecast*!*Add@!@Add*!*KeyFigure@!@KeyFigure*!*UploadGridNum@!@UploadGridNum
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+	v.Local.sSQL.Declare
+	
+	'Check if the Upload grid is populated
+	f.Intrinsic.Control.If(v.DataTable.UploadTB.Exists,=,False)
+		f.Intrinsic.UI.Msgbox("Upload grid (4th) is not populated","Attention")
+		f.Intrinsic.Control.ExitSub
+	f.Intrinsic.Control.EndIf	
+
+	f.Intrinsic.UI.InvokeWaitDialog("Deleting old data...")
+	f.Intrinsic.String.Build("Delete from GCG_5631_ToUpload where FileHeader = '{0}'",v.DataTable.UploadTB(0).FileHeader!FieldValString,v.Local.sSQL)
+	f.ODBC.Connection!conx.Execute(v.Local.sSQL)
+	f.Intrinsic.UI.ChangeWaitStatus("Saving new data...")
+	f.Data.DataTable.SaveToDB("UploadTB","conx","GCG_5631_ToUpload","",128,"FileHeader@!@FileHeader*!*Num@!@Num*!*Type@!@Type*!*Priority@!@Priority*!*Part@!@Part*!*OpenQty@!@OpenQty*!*OrderID@!@OrderID*!*ItemID@!@ItemID*!*Locn@!@Locn*!*ReqDate@!@ReqDate*!*NumFromForecast@!@NumFromForecast*!*Add@!@A_1*!*KeyFigure@!@KeyFigure*!*GridNum@!@UploadGridNum")
+	f.Intrinsic.UI.CloseWaitDialog
+	
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+        F.Intrinsic.Control.CallSub("Unload")
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdCompare_Click.End
+
+Program.Sub.cmdLoadRevSource_Click.Start
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+	v.Local.iMaxOfLines.Declare
+	v.Local.sInputString.Declare
+	v.Local.sHeader.Declare
+	v.Local.sDataType.Declare
+	v.Local.bEx.Declare
+	v.Local.sContent.Declare
+	v.Local.iCnt.Declare
+	
+	'Check File exist
+	f.Intrinsic.File.Exists(v.Screen.Form!txtRevsource.Text.Trim,v.Local.bEx)
+	f.Intrinsic.Control.If(v.Local.bEx.Not)
+		f.Intrinsic.UI.Msgbox("File does not exist.","Attention")
+		f.Intrinsic.Control.ExitSub
+	f.Intrinsic.Control.EndIf	
+	
+	'Read Excel spreadsheet
+	'v.Local.iMaxOfLines.Set(v.Screen.Form!txtMaxLine.Text.Trim)
+	'Function.Automation.MSExcel.ReadSpreadsheet(v.Screen.Form!txtRevsource.Text.Trim,20,v.Local.iMaxOfLines,v.Local.sInputString)
+	'Get content of the file
+	f.Intrinsic.File.File2String(v.Screen.Form!txtRevsource.Text.Trim,v.Local.sContent)
+	
+	v.Local.sHeader.Set("OrderDocNo*!*ItemNo*!*TotalShippableQty*!*ShipHorVal*!*SSIExempt*!*OrderDocType*!*DueQty*!*SLNo*!*Product*!*CustomerLoc*!*Ship-FromLoc*!*Ship-ToLoc*!*GoodsRecipient*!*DueOn*!*UnitofMeasure*!*ShipDate*!*DelivDate*!*PurchGroup*!*StatDelDate*!*RevLvl")
+	v.Local.sDataType.Set("String*!*String*!*String*!*String*!*String*!*String*!*String*!*String*!*String*!*String*!*String*!*String*!*String*!*String*!*String*!*String*!*String*!*String*!*String*!*String")
+	F.Data.DataTable.CreateFromString("Rev",v.Local.sContent,v.Local.sHeader,v.Local.sDataType,",",v.Ambient.NewLine,TRUE)
+
+	
+	f.Data.DataView.Create("Rev","dvRev",22,"OrderDocNo <> ''","OrderDocNo,Product")
+	f.Data.DataView.ToDataTable("Rev","dvRev","RevReal",True)
+	f.Data.DataTable.Close("Rev")
+	f.Data.DataTable.AddExpressionColumn("RevReal","Rev","String","IIF([RevLvl] = '-','NC',[RevLvl])")
+	f.Data.DataTable.AddExpressionColumn("RevReal","OrderPart","String","[OrderDocNo] + '@' + [Product]")
+	f.ODBC.Connection!conx.Execute("Delete from GCG_5631_Rev")
+	f.Data.DataTable.SaveToDB("RevReal","conx","GCG_5631_Rev","",128,"OrderDocNo@!@OrderDocNo*!*Product@!@Product*!*Rev@!@Rev")
+	
+	'Create dictionary
+	f.Data.Dictionary.Exists("RevDict",v.Local.bEx)
+	f.Intrinsic.Control.If(v.Local.bEx)
+		f.Data.Dictionary.Close("RevDict")
+	f.Intrinsic.Control.EndIf
+	f.Data.Dictionary.createFromDataTable("RevDict","RevReal","OrderPart","Rev")
+	f.Data.Dictionary.SetDefaultReturn("RevDict","")	
+	f.Data.DataTable.Close("RevReal")
+
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+        F.Intrinsic.Control.CallSub("Unload")
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdLoadRevSource_Click.End
+
+Program.Sub.cmdBrowseRevSource_Click.Start
+'BrowseRevSource
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+	v.Local.sFilePath.Declare
+	v.Local.sDir.Declare
+	
+	'Default folder
+	f.Intrinsic.String.Build("{0}\Custom\5631\{1}",v.Caller.GlobalDir,v.Caller.CompanyCode,v.Local.sDir)
+	F.Intrinsic.UI.ShowOpenFileDialog(V.Local.sDir,"*|*.csv","",V.Local.sFilePath)
+	F.Intrinsic.Control.If(V.Local.sFilePath,=,"***CANCEL***")
+		F.Intrinsic.UI.Msgbox("No File Was Selected")
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+	gui.Form.txtRevsource.Text(v.Local.sFilePath)
+
+F.Intrinsic.Control.Catch
+    F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+    F.Intrinsic.UI.Msgbox(V.Local.sError)
+       F.Intrinsic.Control.CallSub("Unload")
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdBrowseRevSource_Click.End
+
+Program.Sub.Serialize.Start
+F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	v.Local.sUserID.Declare
+	V.Local.sSerialize.Declare
+	v.Local.sSQL.Declare
+	v.Local.iCnt.Declare
+	v.Local.sGrid.Declare
+	v.Local.sControls.Declare
+	v.Local.sControl.Declare
+	
+	f.Intrinsic.String.Split("gvCmt,gvForecast,gvMerged,gvUpload",",",v.Local.sGrid)
+	f.Intrinsic.String.Split("gsCommit,gsForecast,gsMerged,gsUpload",",",v.Local.sControls)
+	
+	F.Global.Security.GetUserID(v.Caller.User,v.Caller.CompanyCode,v.Local.sUserID)
+	'Delete old registry records
+	F.ODBC.Connection!common.OpenConnection(V.Ambient.Ccon,V.Ambient.Cuser,V.Ambient.Cpass)
+	f.Intrinsic.Control.For(v.Local.iCnt,0,v.Local.sGrid.UBound,1)
+		f.Intrinsic.String.Build("Delete From Gs_Registry Where User_ID = '{0}' and Company = '{1}' and Reg_ID = '5631' and Seq = '1001' and Program = '{2}';",v.Local.sUserID,v.Caller.CompanyCode,v.Local.sGrid(v.Local.iCnt),v.Local.sSQL)
+		F.ODBC.Connection!common.Execute(v.Local.sSQL)
+		v.Local.sControl.Set(v.Local.sControls(v.Local.iCnt))
+		Gui.Form.[v.Local.sControl].Serialize(v.Local.sGrid(v.Local.iCnt),V.Local.sSerialize)
+		F.Global.Registry.AddValue(V.Caller.User,V.Caller.CompanyCode,v.Local.sGrid(v.Local.iCnt),5631,1001,False,"Serialize",False,0,-999.0,1/1/1980,12:00:00 AM,V.Local.sSerialize)			
+	f.Intrinsic.Control.Next(v.Local.iCnt)
+	F.ODBC.Connection!common.Close	
+	
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project 5631 - GCG_5631_SOWO_1grid.g2u: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub("Unload") 
+F.Intrinsic.Control.EndTry
+Program.Sub.Serialize.End
+
+Program.Sub.Deserialize.Start
+F.Intrinsic.Control.Try
+	V.Local.sError.Declare	
+	V.Local.sSerialize.Declare
+	v.Local.iCnt.Declare
+	v.Local.sGrid.Declare
+	v.Local.sControls.Declare
+	v.Local.sControl.Declare
+	
+	f.Intrinsic.String.Split("gvCmt,gvForecast,gvMerged,gvUpload",",",v.Local.sGrid)
+	f.Intrinsic.String.Split("gsCommit,gsForecast,gsMerged,gsUpload",",",v.Local.sControls)		
+	
+	f.Intrinsic.Control.For(v.Local.iCnt,0,v.Local.sGrid.UBound,1)
+		F.Global.Registry.ReadValue(V.Caller.User,V.Caller.CompanyCode,v.Local.sGrid(v.Local.iCnt),5631,1001,6,"",V.Local.sSerialize)
+		v.Local.sControl.Set(v.Local.sControls(v.Local.iCnt))
+		F.Intrinsic.Control.If(V.Local.sSerialize.Trim,<>,"")
+			Gui.Form.[v.Local.sControl].Deserialize(V.Local.sSerialize)
+		F.Intrinsic.Control.EndIf
+		
+	f.Intrinsic.Control.Next(v.Local.iCnt)	
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project 5631 - GCG_5631_SOWO_1grid.g2u: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub("Unload") 
+F.Intrinsic.Control.EndTry
+Program.Sub.Deserialize.End
+
+Program.Sub.cmdSaveDefault_Click.Start
+F.Intrinsic.Control.Try
+	V.Local.sError.Declare	
+	v.Local.sFile.Declare
+	
+	f.Intrinsic.UI.InvokeWaitDialog("Saving default file paths...")
+	
+	f.Intrinsic.String.Build("{0}\Custom\5631\{1}\Setting\{2}_Commit.txt",v.Caller.GlobalDir,v.Caller.CompanyCode,v.Caller.User,v.Local.sFile)
+	f.Intrinsic.File.String2File(v.Local.sFile,v.Screen.Form!txtCommitFilePath.Text.Trim)
+	
+	f.Intrinsic.String.Build("{0}\Custom\5631\{1}\Setting\{2}_Rev.txt",v.Caller.GlobalDir,v.Caller.CompanyCode,v.Caller.User,v.Local.sFile)
+	f.Intrinsic.File.String2File(v.Local.sFile,v.Screen.Form!txtRevsource.Text.Trim)
+	
+	f.Intrinsic.String.Build("{0}\Custom\5631\{1}\Setting\{2}_Forecast.txt",v.Caller.GlobalDir,v.Caller.CompanyCode,v.Caller.User,v.Local.sFile)
+	f.Intrinsic.File.String2File(v.Local.sFile,v.Screen.Form!txtForecastFilePath.Text.Trim)	
+	
+	f.Intrinsic.UI.CloseWaitDialog	
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project 5631 - GCG_5631_SOWO_1grid.g2u: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub("Unload") 
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdSaveDefault_Click.End
